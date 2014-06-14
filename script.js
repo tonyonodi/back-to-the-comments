@@ -13,14 +13,14 @@ function checkLocation() {
 	}
 }
 
-// This is where the magic happens.
-function main() {
+// Main function for when on hacker news.
+function onHackerNews() {
 	
 }
 
-// check if the page is hacker news and run main if so.
+// check if the page is hacker news and run onHackerNews if so.
 var locationIsHackerNews;
 
 locationIsHackerNews = checkLocation();
 
-if ( locationIsHackerNews ) main();
+if ( locationIsHackerNews ) onHackerNews();
