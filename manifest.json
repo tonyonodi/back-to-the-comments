@@ -1,0 +1,20 @@
+{
+  "manifest_version": 2,
+
+  "name": "Back to the Comments",
+  "description": "When browsing hacker news this extension allows users to quickly navigate back to the comments of an item once it has been clicked through to.",
+  "version": "0.1",
+
+  "permissions": [
+  	"tabs","<all_urls>"
+  ],
+  "content_scripts": [
+    {
+    "matches": [
+      "https://news.ycombinator.com/*"
+      ],
+    "js": ["script.js"],
+    "run_at": "document_end"
+    }
+  ]
+}
