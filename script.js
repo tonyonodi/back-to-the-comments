@@ -1,11 +1,9 @@
 function checkLocation() {
-	var location,
-		hackerNewsHost;
+	var hackerNewsHost;
 
-	hackerNewsHost = "news.ycombinator";
-	location = location.host;
+	hackerNewsHost = "news.ycombinator.com";
 
-	if ( location == hackerNewsHost ) {
+	if ( location.host == hackerNewsHost ) {
 		return true;
 	} else {
 		return false;
