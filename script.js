@@ -13,9 +13,9 @@ function checkLocation() {
 	}
 }
 
-// This is where the magic happens,
+// This is where the magic happens.
 function main() {
-	console.log("running main");
+	
 }
 
 // check if the page is hacker news and run main if so.
@@ -23,4 +23,4 @@ var locationIsHackerNews;
 
 locationIsHackerNews = checkLocation();
 
-if (locationIsHackerNews) main();
+if ( locationIsHackerNews ) main();
