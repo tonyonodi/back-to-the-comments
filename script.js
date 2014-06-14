@@ -10,8 +10,12 @@ function checkLocation() {
 	}
 }
 
+function main() {
+	console.log("running main");
+}
+
 var locationIsHackerNews;
 
 locationIsHackerNews = checkLocation();
 
-console.log(locationIsHackerNews);
+if (locationIsHackerNews) main();
