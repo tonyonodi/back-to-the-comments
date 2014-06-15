@@ -31,8 +31,8 @@ function onHackerNews() {
 	linkList = document.querySelectorAll("td.title a");
 	
 	// remove the last element ("more" link)
-	linkList.splice(1, 1);
-	console.log(linkList);
+	linkArray = nodelistToArray(linkList);
+	console.log(linkArray);
 }
 
 // check if the page is hacker news and run onHackerNews if so.
