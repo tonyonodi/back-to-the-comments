@@ -27,11 +27,13 @@ function onHackerNews() {
 	var linkList,
 		linkArray;
 
-	// grab all links including "more" link
+	// grab all links including "more" link and conver to array.
 	linkList = document.querySelectorAll("td.title a");
-	
-	// remove the last element ("more" link)
 	linkArray = nodelistToArray(linkList);
+
+	// remove the last element ("more" link)
+	linkArray.splice(31, 0);
+	
 	console.log(linkArray);
 }
 
