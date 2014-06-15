@@ -13,13 +13,18 @@ function checkLocation() {
 	}
 }
 
-function nodelistToArray(nodelist) {
+function nodelistToArray( nodelist ) {
 	var array = [];
 
 	for (var i = 0; i < nodelist.length; i++ ) 
 		array.push( nodelist[i] );
 
 	return array;
+}
+
+function onLinkClick(e) {
+	// prevent link from opening immediately.
+	e.preventDefault();
 }
 
 // Main function for when on hacker news.
@@ -32,9 +37,11 @@ function onHackerNews() {
 	linkArray = nodelistToArray(linkList);
 
 	// remove the last element ("more" link)
-	linkArray.splice(31, 0);
-	
-	console.log(linkArray);
+	linkArray.splice(31, 1);
+
+	for ( var i = 0; i < linkArray.length; i++ ) {
+		linkArray[i].addEventListener( "click", onLinkClick, false );
+	}
 }
 
 // check if the page is hacker news and run onHackerNews if so.
