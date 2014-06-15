@@ -36,7 +36,7 @@ function onLinkClick(e) {
 	} );	
 }
 
-// Main function for when on hacker news.
+// function for when on hacker news.
 function onHackerNews() {
 	var linkList,
 		linkArray;
@@ -53,6 +53,11 @@ function onHackerNews() {
 	}
 }
 
+// function when on a site navigated to from HN
+function onPost() {
+	console.log("You are not on hacker news.");
+}
+
 // check if the page is hacker news and run onHackerNews if so.
 var locationIsHackerNews;
 
@@ -62,4 +67,8 @@ chrome.storage.local.get("location", function(result) {
 	console.log(result);
 });
 
-if ( locationIsHackerNews ) onHackerNews();
+if ( locationIsHackerNews ) {
+	onHackerNews();
+} else {
+	onPost();
+}
