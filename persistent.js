@@ -33,7 +33,8 @@ function getCommentURL( linkToPost ) {
 }
 
 function addDataToStore( linkURL, discussionURL ) {
-
+	chrome.storage.local.set( { "linkURL": linkURL,
+							"discussionURL": discussionURL } );	
 }
 
 function onLinkClick(e) {
@@ -43,11 +44,8 @@ function onLinkClick(e) {
 	// get url of post and discussion
 	linkURL = this.getAttribute("href");
 	discussionURL = getCommentURL(this);
-	console.log(linkURL);
-	console.log(discussionURL);
 
-	chrome.storage.local.push( { "linkURL": linkURL,
-								"discussionURL": discussionURL } );	
+	addDataToStore( linkURL, discussionURL );
 }
 
 // function for when on hacker news.
@@ -68,16 +66,26 @@ function onHackerNews() {
 }
 
 // function when on a site navigated to from HN
-function onPost() {
-	console.log("ATTENTION!!!")
+function pageIsPost() {
+	var isTheSamePage;
+
 	chrome.storage.local.get(null, function(items) {
-	    console.log(items);
+	    var storedURL,
+	    	currentURL;
+		
+	    storedURL = items.linkURL;
+	    currentURL = window.location;
+
+	    isTheSamePage = ( storedURL == currentURL ) ? true : false;
 	});
+
+	return isTheSamePage;
 }
 
-// check if the page is hacker news and run onHackerNews if so.
+// starts running here
 var locationIsHackerNews;
 
+// check if the page is hacker news and run onHackerNews if so.
 locationIsHackerNews = checkLocation();
 
 // chrome.storage.local.clear(function(){ console.log("cleared everything up"); }); 
@@ -85,5 +93,5 @@ locationIsHackerNews = checkLocation();
 if ( locationIsHackerNews ) {
 	onHackerNews();
 } else {
-	onPost();
+	console.log(pageIsPost());
 }
