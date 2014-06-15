@@ -29,9 +29,11 @@ function onLinkClick(e) {
 	// prevent link from opening immediately.
 	e.preventDefault();
 
+	// get url of post and discussion
 	linkURL = this.getAttribute("href");
+	discussionURL = "http://example.com";
 
-	chrome.storage.local.set( { "location": linkURL }, function() {
+	chrome.storage.local.set( { linkURL: discussionURL }, function() {
 		window.location.href = linkURL;
 	} );	
 }
@@ -55,7 +57,9 @@ function onHackerNews() {
 
 // function when on a site navigated to from HN
 function onPost() {
-	console.log("You are not on hacker news.");
+	chrome.storage.local.get("location", function(result) {
+		console.log(result);
+	});
 }
 
 // check if the page is hacker news and run onHackerNews if so.
@@ -63,9 +67,7 @@ var locationIsHackerNews;
 
 locationIsHackerNews = checkLocation();
 
-chrome.storage.local.get("location", function(result) {
-	console.log(result);
-});
+
 
 if ( locationIsHackerNews ) {
 	onHackerNews();
