@@ -43,10 +43,8 @@ function onLinkClick(e) {
 	// get url of post and discussion
 	linkURL = this.getAttribute("href");
 	discussionURL = getCommentURL(this);
-	console.log(linkURL);
-	console.log(discussionURL);
 
-	chrome.storage.local.push( { "linkURL": linkURL,
+	chrome.storage.local.set( { "linkURL": linkURL,
 								"discussionURL": discussionURL } );	
 }
 
