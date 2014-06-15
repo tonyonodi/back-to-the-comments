@@ -15,8 +15,14 @@ function checkLocation() {
 
 // Main function for when on hacker news.
 function onHackerNews() {
-	
+	var linkList;
+
+	linkList = document.querySelectorAll("")
 }
+
+// A wee "jQuery" hack
+var $ = document.querySelector,
+    $$ = document.querySelectorAll;
 
 // check if the page is hacker news and run onHackerNews if so.
 var locationIsHackerNews;
