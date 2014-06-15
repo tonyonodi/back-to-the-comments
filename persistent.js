@@ -67,7 +67,7 @@ function onHackerNews() {
 
 // function when on a site navigated to from HN
 function pageIsPost() {
-	var isTheSamePage;
+	window.isTheSamePage;
 
 	chrome.storage.local.get(null, function(items) {
 	    var storedURL,
@@ -76,10 +76,12 @@ function pageIsPost() {
 	    storedURL = items.linkURL;
 	    currentURL = window.location;
 
-	    isTheSamePage = ( storedURL == currentURL ) ? true : false;
+	    // check to see if on same page
+	    test = ( storedURL == currentURL ) ? true : false;
+	    console.log("test: " + test);
+	    window.isTheSamePage = test;
 	});
-
-	return isTheSamePage;
+	console.log("it's free: " + window.isTheSamePage);
 }
 
 // starts running here
