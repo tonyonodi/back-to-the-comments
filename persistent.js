@@ -32,16 +32,22 @@ function getCommentURL( linkToPost ) {
 	return commentURL;
 }
 
+function addDataToStore( linkURL, discussionURL ) {
+
+}
+
 function onLinkClick(e) {
 	var linkURL,
 		discussionURL;
 
-	e.preventDefault();
 	// get url of post and discussion
 	linkURL = this.getAttribute("href");
 	discussionURL = getCommentURL(this);
+	console.log(linkURL);
+	console.log(discussionURL);
 
-	chrome.storage.local.set( { linkURL: discussionURL });	
+	chrome.storage.local.push( { "linkURL": linkURL,
+								"discussionURL": discussionURL } );	
 }
 
 // function for when on hacker news.
@@ -64,9 +70,8 @@ function onHackerNews() {
 // function when on a site navigated to from HN
 function onPost() {
 	console.log("ATTENTION!!!")
-	chrome.storage.sync.get(null, function(items) {
-	    var allKeys = Object.keys(items);
-	    console.log(allKeys);
+	chrome.storage.local.get(null, function(items) {
+	    console.log(items);
 	});
 }
 
@@ -74,6 +79,8 @@ function onPost() {
 var locationIsHackerNews;
 
 locationIsHackerNews = checkLocation();
+
+// chrome.storage.local.clear(function(){ console.log("cleared everything up"); }); 
 
 if ( locationIsHackerNews ) {
 	onHackerNews();
