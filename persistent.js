@@ -23,8 +23,14 @@ function nodelistToArray( nodelist ) {
 }
 
 function onLinkClick(e) {
+	var linkURL;
+
 	// prevent link from opening immediately.
 	e.preventDefault();
+
+	linkURL = this.getAttribute("href");
+
+	window.location.href = linkURL;
 }
 
 // Main function for when on hacker news.

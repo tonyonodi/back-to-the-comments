@@ -8,6 +8,13 @@
   "permissions": [
   	"tabs","<all_urls>","storage"
   ],
+  "page_action": {
+    "default_icon": {
+      "19": "images/yc19.png",
+      "38": "images/yc38.png"
+    }
+  }
+  ,
   "content_scripts": [
     {
     "matches": [
