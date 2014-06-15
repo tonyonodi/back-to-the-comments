@@ -31,7 +31,7 @@ function onLinkClick(e) {
 
 	linkURL = this.getAttribute("href");
 
-	chrome.storage.sync.set( { "location": linkURL }, function() {
+	chrome.storage.local.set( { "location": linkURL }, function() {
 		window.location.href = linkURL;
 	} );	
 }
@@ -57,5 +57,9 @@ function onHackerNews() {
 var locationIsHackerNews;
 
 locationIsHackerNews = checkLocation();
+
+chrome.storage.local.get("location", function(result) {
+	console.log(result);
+});
 
 if ( locationIsHackerNews ) onHackerNews();
