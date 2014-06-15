@@ -33,7 +33,8 @@ function getCommentURL( linkToPost ) {
 }
 
 function addDataToStore( linkURL, discussionURL ) {
-
+	chrome.storage.local.set( { "linkURL": linkURL,
+							"discussionURL": discussionURL } );	
 }
 
 function onLinkClick(e) {
@@ -44,8 +45,7 @@ function onLinkClick(e) {
 	linkURL = this.getAttribute("href");
 	discussionURL = getCommentURL(this);
 
-	chrome.storage.local.set( { "linkURL": linkURL,
-								"discussionURL": discussionURL } );	
+	addDataToStore( linkURL, discussionURL );
 }
 
 // function for when on hacker news.
