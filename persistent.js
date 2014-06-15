@@ -22,20 +22,26 @@ function nodelistToArray( nodelist ) {
 	return array;
 }
 
+function getCommentURL( linkToPost ) {
+	var postCell = linkToPost.parentNode,
+		postRow = postCell.parentNode,
+		commentRow = postRow.nextElementSibling,
+		commentLink = commentRow.querySelector("a:last-child"),
+		commentURL = commentLink.getAttribute("href");
+
+	return commentURL;
+}
+
 function onLinkClick(e) {
 	var linkURL,
 		discussionURL;
 
-	// prevent link from opening immediately.
 	e.preventDefault();
-
 	// get url of post and discussion
 	linkURL = this.getAttribute("href");
-	discussionURL = "http://example.com";
+	discussionURL = getCommentURL(this);
 
-	chrome.storage.local.set( { linkURL: discussionURL }, function() {
-		window.location.href = linkURL;
-	} );	
+	chrome.storage.local.set( { linkURL: discussionURL });	
 }
 
 // function for when on hacker news.
@@ -57,8 +63,10 @@ function onHackerNews() {
 
 // function when on a site navigated to from HN
 function onPost() {
-	chrome.storage.local.get("location", function(result) {
-		console.log(result);
+	console.log("ATTENTION!!!")
+	chrome.storage.sync.get(null, function(items) {
+	    var allKeys = Object.keys(items);
+	    console.log(allKeys);
 	});
 }
 
@@ -66,8 +74,6 @@ function onPost() {
 var locationIsHackerNews;
 
 locationIsHackerNews = checkLocation();
-
-
 
 if ( locationIsHackerNews ) {
 	onHackerNews();
