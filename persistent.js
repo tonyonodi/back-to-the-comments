@@ -65,23 +65,27 @@ function onHackerNews() {
 	}
 }
 
-// function when on a site navigated to from HN
-function pageIsPost() {
-	window.isTheSamePage;
+function onPostedPage( pageObject ) {
+	console.log(pageObject);
+}
 
-	chrome.storage.local.get(null, function(items) {
+// function when on a site navigated to from HN
+function checkForPost() {
+
+	chrome.storage.local.get(null, function( savedData ) {
 	    var storedURL,
-	    	currentURL;
+	    	currentURL,
+	    	isSamePage;
 		
-	    storedURL = items.linkURL;
+	    storedURL = savedData.linkURL;
 	    currentURL = window.location;
 
-	    // check to see if on same page
-	    test = ( storedURL == currentURL ) ? true : false;
-	    console.log("test: " + test);
-	    window.isTheSamePage = test;
+	    // check to see if on same page if true go straight to new function
+	    isSamePage = ( storedURL == currentURL ) ? true : false;
+	    if( isSamePage ) {
+	    	onPostedPage( savedData );
+	    }
 	});
-	console.log("it's free: " + window.isTheSamePage);
 }
 
 // starts running here
@@ -95,5 +99,5 @@ locationIsHackerNews = checkLocation();
 if ( locationIsHackerNews ) {
 	onHackerNews();
 } else {
-	console.log(pageIsPost());
+	checkForPost();
 }
