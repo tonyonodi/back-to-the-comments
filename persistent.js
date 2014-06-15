@@ -66,16 +66,26 @@ function onHackerNews() {
 }
 
 // function when on a site navigated to from HN
-function onPost() {
-	console.log("ATTENTION!!!")
+function pageIsPost() {
+	var isTheSamePage;
+
 	chrome.storage.local.get(null, function(items) {
-	    console.log(items);
+	    var storedURL,
+	    	currentURL;
+		
+	    storedURL = items.linkURL;
+	    currentURL = window.location;
+
+	    isTheSamePage = ( storedURL == currentURL ) ? true : false;
 	});
+
+	return isTheSamePage;
 }
 
-// check if the page is hacker news and run onHackerNews if so.
+// starts running here
 var locationIsHackerNews;
 
+// check if the page is hacker news and run onHackerNews if so.
 locationIsHackerNews = checkLocation();
 
 // chrome.storage.local.clear(function(){ console.log("cleared everything up"); }); 
@@ -83,5 +93,5 @@ locationIsHackerNews = checkLocation();
 if ( locationIsHackerNews ) {
 	onHackerNews();
 } else {
-	onPost();
+	console.log(pageIsPost());
 }
