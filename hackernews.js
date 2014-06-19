@@ -5,6 +5,16 @@ function addDataToStore( linkURL, discussionURL ) {
 								"discussionURL": discussionURL } );	
 }
 
+function getCommentURL( linkToPost ) {
+	var postCell = linkToPost.parentNode,
+		postRow = postCell.parentNode,
+		commentRow = postRow.nextElementSibling,
+		commentLink = commentRow.querySelector("a:last-child"),
+		commentURL = commentLink.getAttribute("href");
+
+	return commentURL;
+}
+
 function onLinkClick(e) {
 	var linkURL,
 		discussionURL;
