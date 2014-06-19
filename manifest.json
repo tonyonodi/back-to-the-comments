@@ -13,8 +13,10 @@
       "19": "images/yc19.png",
       "38": "images/yc38.png"
     }
-  }
-  ,
+  }, 
+  "background": {
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
     "matches": [
