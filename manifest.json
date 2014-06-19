@@ -16,15 +16,5 @@
   }, 
   "background": {
     "scripts": ["background.js"]
-  },
-  "content_scripts": [
-    {
-    "matches": [
-      "http://*/*",
-      "https://*/*"
-      ],
-    "js": ["persistent.js"],
-    "run_at": "document_end"
-    }
-  ]
+  }
 }
