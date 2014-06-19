@@ -1,0 +1,1 @@
+console.log("Do things that relate to hacker news.")
