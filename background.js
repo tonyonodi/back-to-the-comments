@@ -10,7 +10,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		// get the object stored in local storage
 		chrome.storage.local.get(null, function(savedData) {
 			var storedURL = savedData.linkURL,
-				currentURL = window.location;
+				currentURL = window.location.toString();
 
 			console.log(storedURL);
 			console.log(currentURL);
