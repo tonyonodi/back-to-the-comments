@@ -3,6 +3,7 @@ console.log("Do things that relate to hacker news.");
 function addDataToStore( linkURL, discussionURL ) {
 	chrome.storage.local.set( { "linkURL": linkURL,
 								"discussionURL": discussionURL } );	
+	console.log("Retrieving data");
 }
 
 function getCommentURL( linkToPost ) {
@@ -18,6 +19,9 @@ function getCommentURL( linkToPost ) {
 function onLinkClick(e) {
 	var linkURL,
 		discussionURL;
+
+	// prevent default action
+	// e.preventDefault();
 
 	// get url of post and discussion
 	linkURL = this.getAttribute("href");
@@ -39,7 +43,7 @@ function nodelistToArray( nodelist ) {
 var linkList,
 	linkArray;
 
-// grab all links including "more" link and conver to array.
+// grab all links including "more" link and convert to array.
 linkList = document.querySelectorAll("td.title a");
 linkArray = nodelistToArray(linkList);
 
