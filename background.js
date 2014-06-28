@@ -13,10 +13,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 				chrome.pageAction.show(tabId);
 			}
 		});
-		
-		chrome.tabs.sendMessage(tabId, {data: tab}, function(response) {
-			console.log(response);
-		});
 	}
 });
 
