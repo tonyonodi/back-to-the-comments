@@ -1,12 +1,6 @@
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	if (changeInfo && changeInfo.status == "complete") {
-		// if (tab.url == 'https://news.ycombinator.com/') {
-		// 	console.log("On hacker news.");
-		// 	chrome.tabs.executeScript(tabId, {file: "inject.js"});
-		// }
-
-		// get the object stored in local storage
 		chrome.storage.local.get(null, function(savedData) {
 			var storedURL = savedData.linkURL,
 				currentURL = window.location.toString();
