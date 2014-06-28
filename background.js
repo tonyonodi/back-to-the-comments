@@ -25,5 +25,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener(function(tab) {
-	console.log("Is this the tab object?: " + tab);
+	// get tabId from tab object
+	var tabId = tab.id;
+
+	// navigate tab to new url
+	chrome.tabs.update(tabId, {url: "http://news.ycombinator.com"});
 });
