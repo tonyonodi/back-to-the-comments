@@ -8,9 +8,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		chrome.storage.local.get(null, function(savedData) {
 			var storedURL = savedData.linkURL;
 
-			console.log("storedURL: " + storedURL);
-			console.log("currentURL: " + currentURL);
-
 			if (storedURL == currentURL) {
 				console.log("HN page!");
 				chrome.pageAction.show(tabId);
@@ -25,9 +22,23 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener(function(tab) {
-	// get tabId from tab object
-	var tabId = tab.id;
+	function navigateTab(commentsPage) {
+		// create URL of comments page
+		var commentsURL = "http://news.ycombinator.com/" + commentsPage;
+		// navigate tab to new url
+		chrome.tabs.update(tabId, {url: commentsURL});
+	}
 
-	// navigate tab to new url
-	chrome.tabs.update(tabId, {url: "http://news.ycombinator.com"});
+	// get tabId from tab object
+	var tabId = tab.id,
+		commentsID,
+		commentsURL;
+
+	// access local storage
+	chrome.storage.local.get(null, function(savedData) {
+		// get discussion page from local storage
+		var commentsPage = savedData.discussionURL;
+		// pass page URL to function to naviage the tab
+		navigateTab(commentsPage);
+	});
 });
