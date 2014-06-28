@@ -1,4 +1,3 @@
-
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	if (changeInfo && changeInfo.status == "complete") {
 
@@ -14,8 +13,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 			if (storedURL == currentURL) {
 				console.log("HN page!");
-			} else {
-				console.log("not a HN page");
+				chrome.pageAction.show(tabId);
 			}
 		});
 		
@@ -23,4 +21,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 			console.log(response);
 		});
 	}
+});
+
+// Add listener for pageaction
+chrome.pageAction.onClicked.addListener(function(tab) {
+	console.log("Is this the tab object?: " + tab);
 });
