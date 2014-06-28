@@ -1,4 +1,10 @@
-console.log("Do things that relate to hacker news.");
+/**
+* Flags
+*/
+var blockLinks = 0, // block default link action
+	devNotice = 1;  // show dev notice
+
+if (devNotice) console.log("Do things that relate to hacker news.");
 
 function addDataToStore( linkURL, discussionURL ) {
 	chrome.storage.local.set( { "linkURL": linkURL,
@@ -42,9 +48,6 @@ function nodelistToArray( nodelist ) {
 
 var linkList,
 	linkArray;
-
-// Flag to block default link action
-var blockLinks = 0;
 
 // grab all links including "more" link and convert to array.
 linkList = document.querySelectorAll("td.title a");
