@@ -20,8 +20,8 @@ function onLinkClick(e) {
 	var linkURL,
 		discussionURL;
 
-	// prevent default action
-	// e.preventDefault();
+	// prevent default action if flag active.
+	if(blockLinks) e.preventDefault();
 
 	// get url of post and discussion
 	linkURL = this.getAttribute("href");
@@ -42,6 +42,9 @@ function nodelistToArray( nodelist ) {
 
 var linkList,
 	linkArray;
+
+// Flag to block default link action
+var blockLinks = 0;
 
 // grab all links including "more" link and convert to array.
 linkList = document.querySelectorAll("td.title a");
