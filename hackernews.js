@@ -1,11 +1,3 @@
-/**
-* Flags
-*/
-var blockLinks = 0, // block default link action
-	devNotice = 0;  // show dev notice
-
-if (devNotice) console.log("Do things that relate to hacker news.");
-
 // takes a post link and returns its comment url
 function getCommentURL( linkToPost ) {
 	var postCell,
