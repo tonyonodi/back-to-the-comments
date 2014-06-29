@@ -5,11 +5,16 @@ var hnPostList = [];
 function checkPageURL(tabId, changeInfo, tab) {
 	if (changeInfo && changeInfo.status == "loading") {
 		// get current tab URL
-		var currentURL = tab.url
+		var currentURL = tab.url,
+			postIndex;
+
+		postIndex = posInList( currentURL, hnPostList );
 
 		// check if in list of stored tabs
-		if ( ! posInList( currentURL, hnPostList ) ) {
+		if ( postIndex != null ) {
 			console.log("HN page!");
+		} else {
+			console.log("not HN page");
 		}
 	}
 }
@@ -68,19 +73,15 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
     		var post = newPostList[i],  // current item
     			postURL = post.linkURL,	// get url
-    			postIndex,
-    			notInList;
+    			postIndex;
 
-    		// check if in list and save as var
+    		// get position in list (or null)
     		postIndex = posInList( postURL, hnPostList );
 
     		// add to hnPostList if not already present
     		if( postIndex == null ) {
     			hnPostList.push(post);
     		}
-
     	}
     }
-
-    console.log(hnPostList);
 });
