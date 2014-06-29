@@ -7,29 +7,35 @@ var blockLinks = 0, // block default link action
 if (devNotice) console.log("Do things that relate to hacker news.");
 
 function addDataToStore( postObjectArray ) {
-	// create object containing data to be saved
-	var hnPageObject = {
-		postObjectArray
-	};
-
 	// save object to local storage
-	chrome.storage.local.set(hnPageObject, function() {
+	chrome.storage.local.set(postObjectArray, function() {
 		// Send message to background script
-		chrome.runtime.sendMessage(hnPageObject);
+		chrome.runtime.sendMessage(postObjectArray);
 		// print out to the console for now
-		console.log(hnPageObject);
+		console.log(postObjectArray);
 	});
 }
 
 // takes a post link and returns its comment url
 function getCommentURL( linkToPost ) {
-	var postCell = linkToPost.parentNode,  // get table cell of link
-		postRow = postCell.parentNode,	// get table row of link
-		commentRow = postRow.nextElementSibling,  // go to next row (containing comment)
+	var postCell,
+		postRow,
+		commentRow,
+		commentLink,
+		commentURL;
+
+	postCell = linkToPost.parentNode;  // get table cell of link
+	postRow = postCell.parentNode;	// get table row of link
+	commentRow = postRow.nextElementSibling;  // go to next row (containing comment)
+	
+	// check if next row was found
+	if( commentRow ) {
 		commentLink = commentRow.querySelector("a:last-child"),  // get the last link in that row
 		commentURL = commentLink.getAttribute("href");	// get the href attribute of comment link
 
-	return commentURL;
+		// return comment url
+		return commentURL;
+	}
 }
 
 function nodelistToArray( nodelist ) {
