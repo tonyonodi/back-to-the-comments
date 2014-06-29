@@ -8,16 +8,12 @@ if (devNotice) console.log("Do things that relate to hacker news.");
 
 function addDataToStore( postObjectArray ) {
 	// create object to be saved from arg
-	var savableOject = { 
-		"posts": postObjectArray
-	}
+	var savableOject = { "list": postObjectArray }
 
 	// save object to local storage
 	chrome.storage.local.set(savableOject, function() {
 		// Send message to background script
 		chrome.runtime.sendMessage(savableOject);
-		// print out to the console for now
-		console.log(savableOject);
 	});
 }
 
@@ -54,14 +50,14 @@ function nodelistToArray( nodelist ) {
 		
 		// Create post object
 		postObject = {
-			"linkURL": currentPost,
+			"linkURL": postURL,
 			"discussionURL": discussionURL
 		}
 
 		// add if it's not a "more" link
 		if( postObject.discussionURL ) array.push( postObject );
 	}
-
+	
 	return array;
 }
 
