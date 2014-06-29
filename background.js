@@ -17,6 +17,20 @@ function checkPageURL(tabId, changeInfo, tab) {
 	}
 }
 
+function posInList( item, list  ) {
+	// loop over list
+	for ( var i = 0; i < list.length; i++ ) {
+		// get linkURL item from currently selected
+		var currentURL = list[i].linkURL;
+
+		// return false if equivalent
+		if ( currentURL == item ) {
+			return i
+		}
+	}
+	return null
+}
+
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener(function(tab) {
 	function navigateTab(commentsPage) {
@@ -39,20 +53,6 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 		navigateTab(commentsPage);
 	});
 });
-
-function posInList( item, list  ) {
-	// loop over list
-	for ( var i = 0; i < list.length; i++ ) {
-		// get linkURL item from currently selected
-		var currentURL = list[i].linkURL;
-
-		// return false if equivalent
-		if ( currentURL == item ) {
-			return i
-		}
-	}
-	return null
-}
 
 // listens for messages passed when chrome storage is altered
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
