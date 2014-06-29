@@ -6,11 +6,10 @@ var blockLinks = 0, // block default link action
 
 if (devNotice) console.log("Do things that relate to hacker news.");
 
-function addDataToStore( linkURL, discussionURL ) {
+function addDataToStore( postObjectArray ) {
 	// create object containing data to be saved
 	var hnPageObject = {
-		"linkURL": linkURL, 
-		 "discussionURL": discussionURL
+		postObjectArray
 	};
 
 	// save object to local storage
