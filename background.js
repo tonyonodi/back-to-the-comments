@@ -1,3 +1,6 @@
+// create array to which all scraped pages are pushed
+var hnPostList = [];
+
 // check for HN comments when page is navigated to
 function checkPageURL(tabId, changeInfo, tab) {
 	if (changeInfo && changeInfo.status == "loading") {
