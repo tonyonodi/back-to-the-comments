@@ -1,4 +1,4 @@
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+function checkPageURL(tabId, changeInfo, tab) {
 	if (changeInfo && changeInfo.status == "complete") {
 
 		// get current tab URL
@@ -14,7 +14,12 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 			}
 		});
 	}
-});
+}
+
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+	// pass to function
+	checkPageURL(tabId, changeInfo, tab);
+} );
 
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener(function(tab) {
