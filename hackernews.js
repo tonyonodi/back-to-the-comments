@@ -7,12 +7,17 @@ var blockLinks = 0, // block default link action
 if (devNotice) console.log("Do things that relate to hacker news.");
 
 function addDataToStore( postObjectArray ) {
+	// create object to be saved from arg
+	var savableOject = { 
+		"posts": postObjectArray
+	}
+
 	// save object to local storage
-	chrome.storage.local.set(postObjectArray, function() {
+	chrome.storage.local.set(savableOject, function() {
 		// Send message to background script
-		chrome.runtime.sendMessage(postObjectArray);
+		chrome.runtime.sendMessage(savableOject);
 		// print out to the console for now
-		console.log(postObjectArray);
+		console.log(savableOject);
 	});
 }
 
