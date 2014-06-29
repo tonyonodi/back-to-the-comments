@@ -17,11 +17,6 @@ function checkPageURL(tabId, changeInfo, tab) {
 	}
 }
 
-// tab change listener runs URL checking function
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-	checkPageURL(tabId, changeInfo, tab);
-} );
-
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener(function(tab) {
 	function navigateTab(commentsPage) {
@@ -83,3 +78,8 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     	}
     }
 });
+
+// tab change listener runs URL checking function
+chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+	checkPageURL(tabId, changeInfo, tab);
+} );
