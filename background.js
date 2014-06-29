@@ -1,6 +1,3 @@
-// create array to which all scraped pages are pushed
-var hnPostList = [];
-
 // check for HN comments when page is navigated to
 function checkPageURL(tabId, changeInfo, tab) {
 	if (changeInfo && changeInfo.status == "loading") {
@@ -83,3 +80,6 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	checkPageURL(tabId, changeInfo, tab);
 } );
+
+// create array to which all scraped pages are pushed
+var hnPostList = [];
