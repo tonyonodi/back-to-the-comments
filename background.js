@@ -1,3 +1,4 @@
+// check for HN comments when page is navigated to
 function checkPageURL(tabId, changeInfo, tab) {
 	if (changeInfo && changeInfo.status == "complete") {
 
@@ -15,8 +16,8 @@ function checkPageURL(tabId, changeInfo, tab) {
 	}
 }
 
+// tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-	// pass to function
 	checkPageURL(tabId, changeInfo, tab);
 } );
 
@@ -43,6 +44,7 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 	});
 });
 
+// listens for messages passed when chrome storage is altered. 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     console.log(message);
 });
