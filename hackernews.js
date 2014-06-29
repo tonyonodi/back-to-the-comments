@@ -7,9 +7,13 @@ var blockLinks = 0, // block default link action
 if (devNotice) console.log("Do things that relate to hacker news.");
 
 function addDataToStore( linkURL, discussionURL ) {
-	chrome.storage.local.set( { "linkURL": linkURL,
-								"discussionURL": discussionURL } );	
-	console.log("Retrieving data");
+	// create object containing data to be saved
+	var hnPageObject = {
+		"linkURL": linkURL, 
+		 "discussionURL": discussionURL
+	};
+
+	chrome.storage.local.set( hnPageObject );	
 }
 
 function getCommentURL( linkToPost ) {
