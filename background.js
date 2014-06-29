@@ -68,9 +68,13 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
     		var post = newPostList[i],  // current item
     			postURL = post.linkURL;	// get url
+    			notInList;
+
+    		// check if in list and save as var
+    		notInList = typeof posInList( postURL, hnPostList ) == "number";
 
     		// add to hnPostList if not already present
-    		if( posInList( postURL, hnPostList ) ) {
+    		if( notInList ) {
     			hnPostList.push(post);
     		}
 
