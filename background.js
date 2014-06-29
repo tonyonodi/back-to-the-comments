@@ -9,7 +9,8 @@ function checkPageURL(tabId, changeInfo, tab) {
 
 		// check if in list of stored tabs
 		if ( postIndex != null ) {
-			console.log("HN page!");
+			// show pageaction
+			chrome.pageAction.show( tabId );
 		}
 	}
 }
@@ -30,6 +31,7 @@ function posInList( item, list  ) {
 
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener(function(tab) {
+	// function to nav tab, action begins below
 	function navigateTab(commentsPage) {
 		// create URL of comments page
 		var commentsURL = "http://news.ycombinator.com/" + commentsPage;
@@ -37,18 +39,19 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 		chrome.tabs.update(tabId, {url: commentsURL});
 	}
 
-	// get tabId from tab object
-	var tabId = tab.id,
-		commentsID,
+	var tabId = tab.id, // get tabId from tab object
+		tabURL,
+		pageIndex,
 		commentsURL;
+	// get tab URL
+	tabURL = tab.url;
 
-	// access local storage
-	chrome.storage.local.get(null, function(savedData) {
-		// get discussion page from local storage
-		var commentsPage = savedData.discussionURL;
-		// pass page URL to function to naviage the tab
-		navigateTab(commentsPage);
-	});
+	// get post url index then comments URl
+	pageIndex = posInList( tabURl, hnPostList );
+	commentsURL = hnPostList[pageIndex].discussionURL
+
+	// pass URL of function to navigate tab
+	navigateTab( commentsURL );
 });
 
 // listens for messages passed when chrome storage is altered
