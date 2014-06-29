@@ -13,7 +13,12 @@ function addDataToStore( linkURL, discussionURL ) {
 		 "discussionURL": discussionURL
 	};
 
-	chrome.storage.local.set( hnPageObject );	
+	// save object to local storage
+	chrome.storage.local.set(hnPageObject, function() {
+		// Send message to background script
+		console.log("saved!");
+		chrome.runtime.sendMessage("Message for runtime.");
+	});
 }
 
 function getCommentURL( linkToPost ) {
