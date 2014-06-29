@@ -8,8 +8,10 @@ function checkPageURL(tabId, changeInfo, tab) {
 		var currentURL = tab.url
 
 		// check if in list of stored tabs
-		if ( ! notInList( hnPostList, currentURL ) ) {
+		if ( ! notInList( currentURL, hnPostList ) ) {
 			console.log("HN page!");
+		} else {
+			console.log("not hn page");
 		}
 	}
 }
