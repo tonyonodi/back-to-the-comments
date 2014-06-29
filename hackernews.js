@@ -17,7 +17,7 @@ function addDataToStore( linkURL, discussionURL ) {
 	chrome.storage.local.set(hnPageObject, function() {
 		// Send message to background script
 		console.log("saved!");
-		chrome.runtime.sendMessage("Message for runtime.");
+		chrome.runtime.sendMessage(hnPageObject);
 	});
 }
 
