@@ -47,7 +47,7 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 	tabURL = tab.url;
 
 	// get post url index then comments URl
-	pageIndex = posInList( tabURl, hnPostList );
+	pageIndex = posInList( tabURL, hnPostList );
 	commentsURL = hnPostList[pageIndex].discussionURL
 
 	// pass URL of function to navigate tab
