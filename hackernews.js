@@ -2,7 +2,7 @@
 * Flags
 */
 var blockLinks = 0, // block default link action
-	devNotice = 1;  // show dev notice
+	devNotice = 0;  // show dev notice
 
 if (devNotice) console.log("Do things that relate to hacker news.");
 
@@ -16,7 +16,6 @@ function addDataToStore( linkURL, discussionURL ) {
 	// save object to local storage
 	chrome.storage.local.set(hnPageObject, function() {
 		// Send message to background script
-		console.log("saved!");
 		chrome.runtime.sendMessage(hnPageObject);
 	});
 }

@@ -1,14 +1,14 @@
 // check for HN comments when page is navigated to
 function checkPageURL(tabId, changeInfo, tab) {
-	if (changeInfo && changeInfo.status == "complete") {
-
+	if (changeInfo && changeInfo.status == "loading") {
 		// get current tab URL
 		var currentURL = tab.url
 
 		// get URL(s) of stored tabs
 		chrome.storage.local.get(null, function(savedData) {
 			var storedURL = savedData.linkURL;
-
+			console.log("storedURL: " + storedURL);
+			console.log("currentURL: " + currentURL);
 			if (storedURL == currentURL) {
 				chrome.pageAction.show(tabId);
 			}
@@ -44,7 +44,7 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 	});
 });
 
-// listens for messages passed when chrome storage is altered. 
+// listens for messages passed when chrome storage is altered
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     console.log(message);
 });
