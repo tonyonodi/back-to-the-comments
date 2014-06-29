@@ -9,12 +9,6 @@ if (devNotice) console.log("Do things that relate to hacker news.");
 function addDataToStore( postObjectArray ) {
 	// create object to be saved from arg
 	var savableOject = { "list": postObjectArray }
-
-	// save object to local storage
-	chrome.storage.local.set(savableOject, function(o) {
-		// Send message to background script
-		chrome.runtime.sendMessage(o);
-	});
 }
 
 // takes a post link and returns its comment url

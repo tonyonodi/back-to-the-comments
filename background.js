@@ -6,12 +6,20 @@ function checkPageURL(tabId, changeInfo, tab) {
 
 		// get URL(s) of stored tabs
 		chrome.storage.local.get(null, function(savedData) {
-			var storedURL = savedData;
-			console.log(storedURL);
-			console.log("currentURL: " + currentURL);
-			if (storedURL == currentURL) {
-				chrome.pageAction.show(tabId);
-			}
+			// get the list from saved object
+			var postList = savedData.list;
+
+
+			// loop over postList
+			for ( var i in postList ) {
+				var post = postList[i],
+					postURL = post.linkURL;
+
+				// check if post is same as current page
+				if (postURL == currentURL) {
+					chrome.pageAction.show(tabId);
+				}
+			}			
 		});
 	}
 }
