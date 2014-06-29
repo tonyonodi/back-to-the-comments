@@ -30,6 +30,12 @@ function getCommentURL( linkToPost ) {
 	return commentURL;
 }
 
+function getCommentURLs( linkArray ) {
+	for (var i = linkArray.length - 1; i >= 0; i--) {
+		console.log(linkArray[i]);
+	};
+}
+
 function onLinkClick(e) {
 	var linkURL,
 		discussionURL;
@@ -60,6 +66,8 @@ var linkList,
 // grab all links including "more" link and convert to array.
 linkList = document.querySelectorAll("td.title a");
 linkArray = nodelistToArray(linkList);
+// pass array to function; grab urls
+getCommentURLs( linkArray );
 
 // remove the last element ("more" link)
 linkArray.splice(31, 1);
