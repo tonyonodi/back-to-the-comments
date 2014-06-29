@@ -9,7 +9,6 @@ function checkPageURL(tabId, changeInfo, tab) {
 			var storedURL = savedData.linkURL;
 
 			if (storedURL == currentURL) {
-				console.log("HN page!");
 				chrome.pageAction.show(tabId);
 			}
 		});
