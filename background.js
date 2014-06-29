@@ -8,7 +8,7 @@ function checkPageURL(tabId, changeInfo, tab) {
 		var currentURL = tab.url
 
 		// check if in list of stored tabs
-		if ( ! notInList( currentURL, hnPostList ) ) {
+		if ( ! posInList( currentURL, hnPostList ) ) {
 			console.log("HN page!");
 		}
 	}
@@ -42,7 +42,7 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 	});
 });
 
-function notInList( item, list  ) {
+function posInList( item, list  ) {
 	// loop over list
 	for ( var i = 0; i < list.length; i++ ) {
 		// get linkURL item from currently selected
@@ -50,10 +50,10 @@ function notInList( item, list  ) {
 
 		// return false if equivalent
 		if ( currentURL == item ) {
-			return 0
+			return i
 		}
 	}
-	return 1
+	return null
 }
 
 // listens for messages passed when chrome storage is altered
@@ -70,7 +70,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     			postURL = post.linkURL;	// get url
 
     		// add to hnPostList if not already present
-    		if( notInList( postURL, hnPostList ) ) {
+    		if( posInList( postURL, hnPostList ) ) {
     			hnPostList.push(post);
     		}
 
