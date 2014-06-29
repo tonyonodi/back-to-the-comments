@@ -16,6 +16,8 @@ function addDataToStore( postObjectArray ) {
 	chrome.storage.local.set(hnPageObject, function() {
 		// Send message to background script
 		chrome.runtime.sendMessage(hnPageObject);
+		// print out to the console for now
+		console.log(hnPageObject);
 	});
 }
 
@@ -39,9 +41,7 @@ function onLinkClick(e) {
 
 	// get url of post and discussion
 	linkURL = this.getAttribute("href");
-	discussionURL = getCommentURL(this);
-
-	addDataToStore( linkURL, discussionURL );
+	discussionURL = getCommentURL(this);	
 }
 
 function nodelistToArray( nodelist ) {
@@ -56,24 +56,24 @@ function nodelistToArray( nodelist ) {
 		// Create post object
 		postObject = {
 			"linkURL": currentPost,
-			"duscussionURL": discussionURL
+			"discussionURL": discussionURL
 		}
 
-		array.push( postObject );
+		// add if it's not a "more" link
+		if( postObject.discussionURL ) array.push( postObject );
 	}
 
 	return array;
 }
 
-
 var linkList,
 	linkArray;
 
-// grab all links including "more" link and convert to array.
-linkList = document.querySelectorAll("td.title a");
-linkArray = nodelistToArray(linkList);
-// pass array to function; grab urls
-getCommentURLs( linkList );
+// grab all links including "more" link and convert to array of objects
+linkList = document.querySelectorAll( "td.title a" );
+linkArray = nodelistToArray( linkList );
+// save this array to storage
+addDataToStore( linkArray );
 
 // remove the last element ("more" link)
 linkArray.splice(31, 1);
