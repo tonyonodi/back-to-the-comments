@@ -55,7 +55,40 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 	});
 });
 
+function notInList( item, list  ) {
+	// loop over list
+	for ( var i = 0; i < list.length; i++ ) {
+		// get linkURL item from currently selected
+		var currentURL = list[i].linkURL;
+
+		// return false if equivalent
+		if ( currentURL == item ) {
+			return 0
+		}
+	}
+	return 1
+}
+
 // listens for messages passed when chrome storage is altered
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    console.log(message);
+
+    // check the correct message is being recieved
+    if ( message.scrapeArray ) {
+    	
+    	var newPostList = message.scrapeArray;
+
+    	for ( var i = 0; i < newPostList.length; i++ ) {
+
+    		var post = newPostList[i],  // current item
+    			postURL = post.linkURL;	// get url
+
+    		// add to hnPostList if not already present
+    		if( notInList( postURL, hnPostList ) ) {
+    			hnPostList.push(post);
+    		}
+
+    	}
+    }
+
+    console.log(hnPostList);
 });

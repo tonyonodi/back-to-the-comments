@@ -34,7 +34,8 @@ function getCommentURL( linkToPost ) {
 }
 
 function nodelistToArray( nodelist ) {
-	var array = [];
+	var array = [],
+		arrayAsObj;
 
 	for (var i = 0; i < nodelist.length; i++ ) {
 		var postObject,  // to be filled with post object later
@@ -51,7 +52,15 @@ function nodelistToArray( nodelist ) {
 		// add if it's not a "more" link
 		if( postObject.discussionURL ) array.push( postObject );
 	}
+
+	// create object for array
+	arrayAsObj = {
+		"scrapeArray": array
+	}
 	
+	// send array to background
+	chrome.runtime.sendMessage( arrayAsObj );
+
 	return array;
 }
 
