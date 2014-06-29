@@ -11,9 +11,9 @@ function addDataToStore( postObjectArray ) {
 	var savableOject = { "list": postObjectArray }
 
 	// save object to local storage
-	chrome.storage.local.set(savableOject, function() {
+	chrome.storage.local.set(savableOject, function(o) {
 		// Send message to background script
-		chrome.runtime.sendMessage(savableOject);
+		chrome.runtime.sendMessage(o);
 	});
 }
 
