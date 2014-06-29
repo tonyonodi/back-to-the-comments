@@ -20,20 +20,15 @@ function addDataToStore( linkURL, discussionURL ) {
 	});
 }
 
+// takes a post link and returns its comment url
 function getCommentURL( linkToPost ) {
-	var postCell = linkToPost.parentNode,
-		postRow = postCell.parentNode,
-		commentRow = postRow.nextElementSibling,
-		commentLink = commentRow.querySelector("a:last-child"),
-		commentURL = commentLink.getAttribute("href");
+	var postCell = linkToPost.parentNode,  // get table cell of link
+		postRow = postCell.parentNode,	// get table row of link
+		commentRow = postRow.nextElementSibling,  // go to next row (containing comment)
+		commentLink = commentRow.querySelector("a:last-child"),  // get the last link in that row
+		commentURL = commentLink.getAttribute("href");	// get the href attribute of comment link
 
 	return commentURL;
-}
-
-function getCommentURLs( linkArray ) {
-	for (var i = linkArray.length - 1; i >= 0; i--) {
-		console.log(linkArray[i]);
-	};
 }
 
 function onLinkClick(e) {
@@ -53,8 +48,20 @@ function onLinkClick(e) {
 function nodelistToArray( nodelist ) {
 	var array = [];
 
-	for (var i = 0; i < nodelist.length; i++ ) 
-		array.push( nodelist[i] );
+	for (var i = 0; i < nodelist.length; i++ ) {
+		var postObject,  // to be filled with post object later
+			currentPost = nodelist[i],  // the node for the current post
+			postURL = currentPost.getAttribute("href"),  // URL for current post link
+			discussionURL = getCommentURL(currentPost);  // pass to function; get comment URL
+		
+		// Create post object
+		postObject = {
+			"linkURL": currentPost,
+			"duscussionURL": discussionURL
+		}
+
+		array.push( postObject );
+	}
 
 	return array;
 }
@@ -67,7 +74,7 @@ var linkList,
 linkList = document.querySelectorAll("td.title a");
 linkArray = nodelistToArray(linkList);
 // pass array to function; grab urls
-getCommentURLs( linkArray );
+getCommentURLs( linkList );
 
 // remove the last element ("more" link)
 linkArray.splice(31, 1);
