@@ -6,11 +6,6 @@ var blockLinks = 0, // block default link action
 
 if (devNotice) console.log("Do things that relate to hacker news.");
 
-function addDataToStore( postObjectArray ) {
-	// create object to be saved from arg
-	var savableOject = { "list": postObjectArray }
-}
-
 // takes a post link and returns its comment url
 function getCommentURL( linkToPost ) {
 	var postCell,
