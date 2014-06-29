@@ -7,7 +7,7 @@ function checkPageURL(tabId, changeInfo, tab) {
 		// get URL(s) of stored tabs
 		chrome.storage.local.get(null, function(savedData) {
 			var storedURL = savedData;
-			console.log("storedURL: " + storedURL);
+			console.log(storedURL);
 			console.log("currentURL: " + currentURL);
 			if (storedURL == currentURL) {
 				chrome.pageAction.show(tabId);
