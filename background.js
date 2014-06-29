@@ -13,8 +13,6 @@ function checkPageURL(tabId, changeInfo, tab) {
 		// check if in list of stored tabs
 		if ( postIndex != null ) {
 			console.log("HN page!");
-		} else {
-			console.log("not HN page");
 		}
 	}
 }
