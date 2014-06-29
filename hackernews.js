@@ -32,18 +32,6 @@ function getCommentURL( linkToPost ) {
 	return commentURL;
 }
 
-function onLinkClick(e) {
-	var linkURL,
-		discussionURL;
-
-	// prevent default action if flag active.
-	if(blockLinks) e.preventDefault();
-
-	// get url of post and discussion
-	linkURL = this.getAttribute("href");
-	discussionURL = getCommentURL(this);	
-}
-
 function nodelistToArray( nodelist ) {
 	var array = [];
 
@@ -77,7 +65,3 @@ addDataToStore( linkArray );
 
 // remove the last element ("more" link)
 linkArray.splice(31, 1);
-
-for ( var i = 0; i < linkArray.length; i++ ) {
-	linkArray[i].addEventListener( "click", onLinkClick, false );
-}
