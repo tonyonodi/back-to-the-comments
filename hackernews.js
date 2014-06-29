@@ -70,5 +70,3 @@ var linkList,
 // grab all links including "more" link and convert to array of objects
 linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
-// save this array to storage
-addDataToStore( linkArray );
