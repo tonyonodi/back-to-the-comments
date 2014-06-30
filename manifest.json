@@ -10,8 +10,8 @@
   ],
   "page_action": {
     "default_icon": {
-      "19": "images/yc19.png",
-      "38": "images/yc38.png"
+      "19": "images/arrow-19.png",
+      "38": "images/arrow-38.png"
     }
   }, 
   "background": {
