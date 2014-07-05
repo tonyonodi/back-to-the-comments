@@ -1,10 +1,14 @@
 // takes URL string and processes it to maximise compatibility
 function cleanURL(URL) {
-	var trailingSlashRegex;
-	var temp = URL;
+	var trailingSlashRegex,
+		queryStringRegex;
 	// remove trailing slash if it exists
 	trailingSlashRegex = /\/$/;
 	URL = URL.replace(trailingSlashRegex, '');
+	
+	// remove query string if it exists
+	queryStringRegex = /?.{0,}/;
+	URL = URL.replace(queryStringRegex, '');
 
 	return URL;
 }
@@ -73,3 +77,4 @@ var linkList,
 // grab all links including "more" link and convert to array of objects
 linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
+console.log("lodaded")

@@ -101,3 +101,5 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 // create array to which all scraped pages are pushed
 var hnPostList = [];
+
+console.log("this motherfucker loaded.")
