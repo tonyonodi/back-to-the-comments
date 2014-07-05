@@ -5,6 +5,8 @@ function checkPageURL(tabId, changeInfo, tab) {
 		var currentURL = tab.url,
 			postIndex;
 
+		console.log(currentURL);
+
 		postIndex = posInList( currentURL, hnPostList );
 
 		// check if in list of stored tabs

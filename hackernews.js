@@ -1,3 +1,8 @@
+// takes URL string and processes it to maximise compatibility
+cleanURL(URL) {
+	
+}
+
 // takes a post link and returns its comment url
 function getCommentURL( linkToPost ) {
 	var postCell,
@@ -29,6 +34,9 @@ function nodelistToArray( nodelist ) {
 			currentPost = nodelist[i],  // the node for the current post
 			postURL = currentPost.getAttribute("href"),  // URL for current post link
 			discussionURL = getCommentURL(currentPost);  // pass to function; get comment URL
+
+		// Process URL to account for inconsistencies with url when on page
+		cleanURL(currentPost);
 		
 		// Create post object
 		postObject = {
@@ -47,6 +55,7 @@ function nodelistToArray( nodelist ) {
 	
 	// send array to background
 	chrome.runtime.sendMessage( arrayAsObj );
+	console.log(arrayAsObj);
 
 	return array;
 }
