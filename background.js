@@ -1,3 +1,14 @@
+// takes URL string and processes it to maximise compatibility
+function cleanURL(URL) {
+	var trailingSlashRegex;
+	var temp = URL;
+	// remove trailing slash if it exists
+	trailingSlashRegex = /\/$/;
+	URL = URL.replace(trailingSlashRegex, '');
+
+	return URL;
+}
+
 // check for HN comments when page is navigated to
 function checkPageURL(tabId, changeInfo, tab) {
 	if (changeInfo && changeInfo.status == "loading") {
@@ -5,7 +16,7 @@ function checkPageURL(tabId, changeInfo, tab) {
 		var currentURL = tab.url,
 			postIndex;
 
-		console.log(currentURL);
+		currentURL = cleanURL(currentURL);
 
 		postIndex = posInList( currentURL, hnPostList );
 

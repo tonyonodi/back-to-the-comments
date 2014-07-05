@@ -1,6 +1,11 @@
 // takes URL string and processes it to maximise compatibility
-cleanURL(URL) {
-	
+function cleanURL(URL) {
+	var trailingSlashRegex;
+	var temp = URL;
+	// remove trailing slash if it exists
+	trailingSlashRegex = /\/$/;
+
+	return URL;
 }
 
 // takes a post link and returns its comment url
@@ -36,7 +41,7 @@ function nodelistToArray( nodelist ) {
 			discussionURL = getCommentURL(currentPost);  // pass to function; get comment URL
 
 		// Process URL to account for inconsistencies with url when on page
-		cleanURL(currentPost);
+		postURL = cleanURL(postURL);
 		
 		// Create post object
 		postObject = {
@@ -55,7 +60,7 @@ function nodelistToArray( nodelist ) {
 	
 	// send array to background
 	chrome.runtime.sendMessage( arrayAsObj );
-	console.log(arrayAsObj);
+	
 
 	return array;
 }
