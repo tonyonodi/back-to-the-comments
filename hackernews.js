@@ -4,6 +4,7 @@ function cleanURL(URL) {
 	var temp = URL;
 	// remove trailing slash if it exists
 	trailingSlashRegex = /\/$/;
+	URL = URL.replace(trailingSlashRegex, '');
 
 	return URL;
 }
@@ -42,6 +43,7 @@ function nodelistToArray( nodelist ) {
 
 		// Process URL to account for inconsistencies with url when on page
 		postURL = cleanURL(postURL);
+		console.log(postURL);
 		
 		// Create post object
 		postObject = {
@@ -60,7 +62,7 @@ function nodelistToArray( nodelist ) {
 	
 	// send array to background
 	chrome.runtime.sendMessage( arrayAsObj );
-	
+	console.log(arrayAsObj);
 
 	return array;
 }

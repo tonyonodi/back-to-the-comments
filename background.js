@@ -19,6 +19,7 @@ function checkPageURL(tabId, changeInfo, tab) {
 		currentURL = cleanURL(currentURL);
 
 		postIndex = posInList( currentURL, hnPostList );
+		console.log(currentURL);
 
 		// check if in list of stored tabs
 		if ( postIndex != null ) {
@@ -56,8 +57,9 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 		tabURL,
 		pageIndex,
 		commentsURL;
-	// get tab URL
+	// get tab URL and clean it
 	tabURL = tab.url;
+	tabURL = cleanURL( tabURL );
 
 	// get post url index then comments URl
 	pageIndex = posInList( tabURL, hnPostList );
