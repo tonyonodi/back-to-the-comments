@@ -1,8 +1,3 @@
-// takes URL string and processes it to maximise compatibility
-cleanURL(URL) {
-	
-}
-
 // takes a post link and returns its comment url
 function getCommentURL( linkToPost ) {
 	var postCell,
@@ -17,8 +12,10 @@ function getCommentURL( linkToPost ) {
 	
 	// check if next row was found
 	if( commentRow ) {
-		commentLink = commentRow.querySelector("a:last-child"),  // get the last link in that row
-		commentURL = commentLink.getAttribute("href");	// get the href attribute of comment link
+		commentLink = commentRow.querySelector("a:last-child");  // get the last link in that row
+		// comments don't exist for "x is hiring" listings
+		if ( commentLink ) 
+			commentURL = commentLink.getAttribute("href");	// get the href attribute of comment link
 
 		// return comment url
 		return commentURL;
@@ -34,9 +31,6 @@ function nodelistToArray( nodelist ) {
 			currentPost = nodelist[i],  // the node for the current post
 			postURL = currentPost.getAttribute("href"),  // URL for current post link
 			discussionURL = getCommentURL(currentPost);  // pass to function; get comment URL
-
-		// Process URL to account for inconsistencies with url when on page
-		cleanURL(currentPost);
 		
 		// Create post object
 		postObject = {
