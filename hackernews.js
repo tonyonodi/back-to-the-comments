@@ -24,15 +24,12 @@ function getCommentURL( linkToPost ) {
 	postCell = linkToPost.parentNode;  // get table cell of link
 	postRow = postCell.parentNode;	// get table row of link
 	commentRow = postRow.nextElementSibling;  // go to next row (containing comment)
-	console.log(postCell);
-	console.log(postRow);
-	console.log(commentRow);
+	
 	// check if next row was found
 	if( commentRow ) {
 		commentLink = commentRow.querySelector("a:last-child");  // get the last link in that row
 
-		// include if statement as "hiring" posts do not have comment sections
-		if( commentLink ) {
+		if( commentLink ) { // include if statement as "hiring" posts do not have comment sections
 			commentURL = commentLink.getAttribute("href");	// get the href attribute of comment link
 		}
 
