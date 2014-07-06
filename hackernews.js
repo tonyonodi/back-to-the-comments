@@ -24,7 +24,7 @@ function getCommentURL( linkToPost ) {
 	postCell = linkToPost.parentNode;  // get table cell of link
 	postRow = postCell.parentNode;	// get table row of link
 	commentRow = postRow.nextElementSibling;  // go to next row (containing comment)
-	
+
 	// check if next row was found
 	if( commentRow ) {
 		commentLink = commentRow.querySelector("a:last-child");  // get the last link in that row
@@ -80,4 +80,3 @@ var linkList,
 // grab all links including "more" link and convert to array of objects
 linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
-console.log("lodaded")

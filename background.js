@@ -15,7 +15,7 @@ function cleanURL(URL) {
 
 // check for HN comments when page is navigated to
 function checkPageURL(tabId, changeInfo, tab) {
-	if (changeInfo && changeInfo.status == "loading") {
+	if (changeInfo && changeInfo.status == "loading") {		
 		// get current tab URL
 		var currentURL = tab.url,
 			postIndex;
@@ -105,5 +105,3 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 // create array to which all scraped pages are pushed
 var hnPostList = [];
-
-console.log("this motherfucker loaded.")
