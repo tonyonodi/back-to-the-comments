@@ -38,7 +38,7 @@ function nodelistToArray( nodelist ) {
 
 var linkList,
 	linkArray,
-	commentList = [];
+	comments = Object();;
 
 // grab all links including "more" link and convert to array of objects
 linkList = document.querySelectorAll( "td.title a" );
@@ -50,8 +50,6 @@ for (var i = 0; i < linkArray.length; i++) {
 		comment = getCommentURL( link );
 
 	if ( comment ) {
-		commentList[ link ] = comment;
+		comments[link] = comment;
 	}
 };
-
-console.log( commentList );
