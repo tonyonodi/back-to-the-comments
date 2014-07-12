@@ -23,33 +23,16 @@ function getCommentURL( linkToPost ) {
 }
 
 function nodelistToArray( nodelist ) {
-	var array = [],
-		arrayAsObj;
+	var array = [];
 
 	for (var i = 0; i < nodelist.length; i++ ) {
-		var postObject,  // to be filled with post object later
-			currentPost = nodelist[i],  // the node for the current post
-			postURL = currentPost.getAttribute("href"),  // URL for current post link
-			discussionURL = getCommentURL(currentPost);  // pass to function; get comment URL
+		var currentPost = nodelist[i];  // the node for the current post
 		
-		// Create post object
-		postObject = {
-			"linkURL": postURL,
-			"discussionURL": discussionURL
-		}
-
-		// add if it's not a "more" link
-		if( postObject.discussionURL ) array.push( postObject );
+		// Add node to array
+		array.push( currentPost );
 	}
 
-	// create object for array
-	arrayAsObj = {
-		"scrapeArray": array
-	}
-	
-	// send array to background
-	chrome.runtime.sendMessage( arrayAsObj );
-	console.log(arrayAsObj);
+	console.log(array);
 
 	return array;
 }
@@ -60,3 +43,7 @@ var linkList,
 // grab all links including "more" link and convert to array of objects
 linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
+
+for (var i = 0; i <= linkArray.length; i++) {
+	linkArray[i].addEventListener
+};
