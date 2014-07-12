@@ -22,6 +22,7 @@ function getCommentURL( linkToPost ) {
 	}
 }
 
+// convert nodeList to array and get rid
 function nodelistToArray( nodelist ) {
 	var array = [];
 
@@ -32,18 +33,23 @@ function nodelistToArray( nodelist ) {
 		array.push( currentPost );
 	}
 
-	console.log(array);
-
 	return array;
 }
 
 var linkList,
-	linkArray;
+	linkArray,
+	commentList = [];
 
 // grab all links including "more" link and convert to array of objects
 linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
 
-for (var i = 0; i <= linkArray.length; i++) {
-	linkArray[i].addEventListener
+// use < to omit "more"
+for (var i = 0; i < linkArray.length; i++) {
+	var link 	= linkArray[i],
+		comment = getCommentURL( link );
+
+	if ( comment ) {
+		console.log( comment );
+	}
 };
