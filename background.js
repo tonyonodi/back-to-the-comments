@@ -56,13 +56,19 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 
 // listens for messages passed when chrome storage is altered
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-
     clickTime = message;
 });
 
 // tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-	checkPageURL(tabId, changeInfo, tab);
+	var updateTime = new Date().getTime(),
+		latency;
+
+	if ( clickTime ) {
+		latency = updateTime - clickTime;
+
+		console.log(latency);
+	}
 } );
 
 // create array to which all scraped pages are pushed
