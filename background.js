@@ -5,8 +5,6 @@ function checkPageURL(tabId, changeInfo, tab) {
 		var currentURL = tab.url,
 			postIndex;
 
-		console.log(currentURL);
-
 		postIndex = posInList( currentURL, hnPostList );
 
 		// check if in list of stored tabs
@@ -59,26 +57,7 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 // listens for messages passed when chrome storage is altered
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
-    // check the correct message is being recieved
-    if ( message.scrapeArray ) {
-    	
-    	var newPostList = message.scrapeArray;
-
-    	for ( var i = 0; i < newPostList.length; i++ ) {
-
-    		var post = newPostList[i],  // current item
-    			postURL = post.linkURL,	// get url
-    			postIndex;
-
-    		// get position in list (or null)
-    		postIndex = posInList( postURL, hnPostList );
-
-    		// add to hnPostList if not already present
-    		if( postIndex == null ) {
-    			hnPostList.push(post);
-    		}
-    	}
-    }
+    console.log( message );
 });
 
 // tab change listener runs URL checking function
