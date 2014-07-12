@@ -37,8 +37,7 @@ function nodelistToArray( nodelist ) {
 }
 
 var linkList,
-	linkArray,
-	comments = Object();;
+	linkArray;
 
 // grab all links including "more" link and convert to array of objects
 linkList = document.querySelectorAll( "td.title a" );
@@ -50,12 +49,10 @@ for (var i = 0; i < linkArray.length; i++) {
 		comment = getCommentURL( link );
 
 	if ( comment ) {
-		// save the comment url
-		comments[link] = comment;
 
 		link.addEventListener( "click", function(e) {
-			// basically an empty message
-			chrome.runtime.sendMessage(true);
+			// send comment url
+			chrome.runtime.sendMessage( comment );
 		});
 	}
 };
