@@ -50,6 +50,13 @@ for (var i = 0; i < linkArray.length; i++) {
 		comment = getCommentURL( link );
 
 	if ( comment ) {
+		// save the comment url
 		comments[link] = comment;
+
+		link.addEventListener( "click", function(e) {
+			e.preventDefault();
+
+			console.log("hello");
+		});
 	}
 };
