@@ -50,6 +50,8 @@ for (var i = 0; i < linkArray.length; i++) {
 		comment = getCommentURL( link );
 
 	if ( comment ) {
-		console.log( comment );
+		commentList[ link ] = comment;
 	}
 };
+
+console.log( commentList );
