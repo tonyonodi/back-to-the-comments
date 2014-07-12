@@ -44,7 +44,6 @@ linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
 
 function messenger( message ) {
-	console.log(message);
 	// send comment url
 	chrome.runtime.sendMessage( message );
 }
@@ -56,7 +55,7 @@ for (var i = 0; i < linkArray.length; i++) {
 		x = "hello";
 
 	if ( comment ) {
-		link.addEventListener( "click", messenger.bind( null, x ), false);
+		link.addEventListener( "click", messenger.bind( null, comment ), false);
 	}
 };
 
