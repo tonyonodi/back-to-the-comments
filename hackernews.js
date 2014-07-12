@@ -54,9 +54,9 @@ for (var i = 0; i < linkArray.length; i++) {
 		comments[link] = comment;
 
 		link.addEventListener( "click", function(e) {
-			e.preventDefault();
+			var timestamp = new Date().getTime();
 
-			console.log("hello");
+			console.log( timestamp );
 		});
 	}
 };
