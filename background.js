@@ -1,31 +1,21 @@
 
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener(function(tab) {
-	// function to nav tab, action begins below
-	function navigateTab(commentsPage) {
-		// create URL of comments page
-		var commentsURL = "http://news.ycombinator.com/";
-		// navigate tab to new url
-		chrome.tabs.update(tabId, {url: commentsURL});
-	}
+	var destination,
+		tabId;
 
-	var tabId = tab.id, // get tabId from tab object
-		tabURL,
-		pageIndex,
-		commentsURL;
-	// get tab URL
-	tabURL = tab.url;
+	// create URL of comments page
+	destination = "http://news.ycombinator.com/" + commentURL;
+	// get tab id
+	tabId = tab.id;
 
-	// get post url index then comments URl
-	pageIndex = posInList( tabURL, hnPostList );
-	commentsURL = hnPostList[pageIndex].discussionURL
-
-	// pass URL of function to navigate tab
-	navigateTab( commentsURL );
+	// navigate tab to new url
+	chrome.tabs.update(tabId, {url: destination});
 });
 
 // listens for messages passed when chrome storage is altered
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    clickFlag = true;
     commentURL = message;
 });
 
@@ -46,4 +36,5 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 // create array to which all scraped pages are pushed
 var hnPostList = [],
-	commentURL;
+	commentURL,
+	clickFlag;
