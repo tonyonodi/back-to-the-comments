@@ -4,7 +4,7 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 	// function to nav tab, action begins below
 	function navigateTab(commentsPage) {
 		// create URL of comments page
-		var commentsURL = "http://news.ycombinator.com/" + commentsPage;
+		var commentsURL = "http://news.ycombinator.com/";
 		// navigate tab to new url
 		chrome.tabs.update(tabId, {url: commentsURL});
 	}
@@ -27,6 +27,7 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 // listens for messages passed when chrome storage is altered
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     clickFlag = message;
+    console.log(message);
 });
 
 // tab change listener runs URL checking function

@@ -43,16 +43,22 @@ var linkList,
 linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
 
+function messenger( message ) {
+	console.log(message);
+	// send comment url
+	chrome.runtime.sendMessage( message );
+}
+
 // use < to omit "more"
 for (var i = 0; i < linkArray.length; i++) {
 	var link 	= linkArray[i],
-		comment = getCommentURL( link );
+		comment = getCommentURL( link ),
+		x = "hello";
 
 	if ( comment ) {
-
-		link.addEventListener( "click", function(e) {
-			// send comment url
-			chrome.runtime.sendMessage( comment );
-		});
+		link.addEventListener( "click", messenger.bind( null, x ), false);
 	}
 };
+
+
+
