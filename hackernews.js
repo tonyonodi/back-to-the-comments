@@ -56,7 +56,7 @@ for (var i = 0; i < linkArray.length; i++) {
 		link.addEventListener( "click", function(e) {
 			var timestamp = new Date().getTime();
 
-			console.log( timestamp );
+			chrome.runtime.sendMessage(timestamp);
 		});
 	}
 };
