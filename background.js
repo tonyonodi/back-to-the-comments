@@ -1,33 +1,3 @@
-// check for HN comments when page is navigated to
-function checkPageURL(tabId, changeInfo, tab) {
-	if (changeInfo && changeInfo.status == "loading") {
-		// get current tab URL
-		var currentURL = tab.url,
-			postIndex;
-
-		postIndex = posInList( currentURL, hnPostList );
-
-		// check if in list of stored tabs
-		if ( postIndex != null ) {
-			// show pageaction
-			chrome.pageAction.show( tabId );
-		}
-	}
-}
-
-function posInList( item, list  ) {
-	// loop over list
-	for ( var i = 0; i < list.length; i++ ) {
-		// get linkURL item from currently selected
-		var currentURL = list[i].linkURL;
-
-		// return false if equivalent
-		if ( currentURL == item ) {
-			return i
-		}
-	}
-	return null
-}
 
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener(function(tab) {
@@ -68,7 +38,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		
 		// show page action
 		chrome.pageAction.show( tabId );
-		
+
 		// turn clickFlag off 
 		clickFlag = false;		
 	}
