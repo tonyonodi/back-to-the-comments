@@ -54,9 +54,8 @@ for (var i = 0; i < linkArray.length; i++) {
 		comments[link] = comment;
 
 		link.addEventListener( "click", function(e) {
-			var timestamp = new Date().getTime();
-
-			chrome.runtime.sendMessage(timestamp);
+			// basically an empty message
+			chrome.runtime.sendMessage(true);
 		});
 	}
 };
