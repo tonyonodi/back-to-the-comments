@@ -12,8 +12,9 @@ function getCommentURL( linkToPost ) {
 	
 	// check if next row was found
 	if( commentRow ) {
-		commentLink = commentRow.querySelector("a:last-child"),  // get the last link in that row
-		commentURL = commentLink.getAttribute("href");	// get the href attribute of comment link
+		commentLink = commentRow.querySelector("a:last-child");  // get the last link in that row
+		if ( commentLink )
+			commentURL = commentLink.getAttribute("href");	// get the href attribute of comment link
 
 		// return comment url
 		return commentURL;
