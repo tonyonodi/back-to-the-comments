@@ -22,14 +22,16 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 // tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-	var isLoading;
+	var isLoading,
+		tabName;
 
 	isLoading = changeInfo.status;
 
 	if ( clickFlag && isLoading ) {
 
 		// add comment url to tab object
-		
+		tabName = "tab_" + tabId;
+		tabList[ tabName ];
 		
 		// show page action
 		chrome.pageAction.show( tabId );
