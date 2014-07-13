@@ -25,5 +25,6 @@
     "js": ["hackernews.js"],
     "run_at": "document_end"
     }
-  ]
+  ],
+  "options_page": "options.html"
 }
