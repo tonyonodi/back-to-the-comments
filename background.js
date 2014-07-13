@@ -22,9 +22,12 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 // tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	var updateTime = new Date().getTime(),
-		latency;
+		latency,
+		isLoading;
 
-	if ( clickFlag ) {
+	isLoading = changeInfo.status;
+
+	if ( clickFlag && isLoading ) {
 		
 		// show page action
 		chrome.pageAction.show( tabId );
