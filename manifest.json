@@ -3,7 +3,7 @@
 
   "name": "Back to the Comments",
   "description": "When browsing hacker news this extension allows users to quickly navigate back to the comments of an item once it has been clicked through to.",
-  "version": "0.2.1",
+  "version": "0.3.0",
 
   "permissions": [
   	"tabs","<all_urls>","storage"
