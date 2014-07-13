@@ -22,15 +22,14 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 // tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-	var latency,
-		isLoading;
+	var isLoading;
 
 	isLoading = changeInfo.status;
 
 	if ( clickFlag && isLoading ) {
 
 		// add comment url to tab object
-		console.log(tabId);
+		
 		
 		// show page action
 		chrome.pageAction.show( tabId );
@@ -41,5 +40,5 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 } );
 
 // create array to which all scraped pages are pushed
-var commentList = Object(),
+var tabList = Object(),
 	clickFlag;
