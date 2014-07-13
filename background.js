@@ -15,7 +15,7 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 	destination = "http://news.ycombinator.com/" + commentURL;
 
 	// navigate tab to new url
-	chrome.tabs.update(tabId, {url: tab.HNcomment});
+	chrome.tabs.update(tabId, {url: destination});
 });
 
 // listens for messages passed when chrome storage is altered
