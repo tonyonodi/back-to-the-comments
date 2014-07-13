@@ -3,16 +3,7 @@
 chrome.pageAction.onClicked.addListener(function(tab) {
 	var destination,
 		tabId,
-		tabName,
-		hnTimestamp,
-		currentTimestamp;
-
-	currentTimestamp = new Date.getTime();
-	
-	// get comment url from tab list
-	for ( tab in tablist ) {
-		
-	}
+		tabName;
 
 	// create URL of comments page
 	destination = "http://news.ycombinator.com/" + commentURL;
@@ -26,7 +17,6 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     var tabName;
 
     clickFlag = true;
-    
     mostRecentComment = message;
 	
 });
