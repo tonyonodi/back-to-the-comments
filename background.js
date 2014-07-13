@@ -2,13 +2,16 @@
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener(function(tab) {
 	var destination,
-		tabId;
-	console.log(tab.HNcomment);
+		tabId,
+		tabName;
+
+	// get comment url from tab object
+	tabId = tab.id;
+	tabName = "tab_" + tabId;
+	commentURL = tabList[ tabName ];
 
 	// create URL of comments page
 	destination = "http://news.ycombinator.com/" + commentURL;
-	// get tab id
-	tabId = tab.id;
 
 	// navigate tab to new url
 	chrome.tabs.update(tabId, {url: tab.HNcomment});
@@ -16,8 +19,13 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 
 // listens for messages passed when chrome storage is altered
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    var tabName;
+
     clickFlag = true;
-    commentURL = message;
+    
+    // add comment url to tab object
+	tabName = "tab_" + tabId;
+	tabList[ tabName ] = message;
 });
 
 // tab change listener runs URL checking function
@@ -28,10 +36,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	isLoading = changeInfo.status;
 
 	if ( clickFlag && isLoading ) {
-
-		// add comment url to tab object
-		tabName = "tab_" + tabId;
-		tabList[ tabName ];
 		
 		// show page action
 		chrome.pageAction.show( tabId );
