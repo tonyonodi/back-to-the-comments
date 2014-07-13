@@ -1,4 +1,6 @@
-
+/**
+* Listener Callbacks
+*/
 var pageActionListener = function(tab) {
 	var destination,
 		commentURL,
@@ -16,6 +18,7 @@ var pageActionListener = function(tab) {
 	// navigate tab to new url
 	chrome.tabs.update(tabId, {url: destination});
 }
+
 
 var messageListener = function(message, sender, sendResponse) {
     var tabName;
@@ -45,7 +48,10 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 	}
 }
 
-// create array to which all scraped pages are pushed
+
+/**
+* Vars and Events
+*/
 var tabList = Object(),
 	mostRecentComment,
 	clickFlag;
