@@ -3,6 +3,7 @@
 chrome.pageAction.onClicked.addListener(function(tab) {
 	var destination,
 		tabId;
+	console.log(tab.HNcomment);
 
 	// create URL of comments page
 	destination = "http://news.ycombinator.com/" + commentURL;
@@ -10,7 +11,7 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 	tabId = tab.id;
 
 	// navigate tab to new url
-	chrome.tabs.update(tabId, {url: destination});
+	chrome.tabs.update(tabId, {url: tab.HNcomment});
 });
 
 // listens for messages passed when chrome storage is altered
@@ -28,8 +29,8 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 
 	if ( clickFlag && isLoading ) {
 
-		// add comment url to pageaction
-
+		// add comment url to tab object
+		console.log(tabId);
 		
 		// show page action
 		chrome.pageAction.show( tabId );
@@ -40,6 +41,5 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 } );
 
 // create array to which all scraped pages are pushed
-var hnPostList = [],
-	commentURL,
+var commentList = Object(),
 	clickFlag;
