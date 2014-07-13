@@ -51,22 +51,14 @@ function messenger( message ) {
 // use < to omit "more"
 for (var i = 0; i < linkArray.length; i++) {
 	var link,
-		comment,
-		timestamp,
-		message;
+		comment;
 
 	link 	= linkArray[i];
 	comment = getCommentURL( link );
 
-	if ( comment ) {
+	if ( comment ) { 
 
-		timestamp	= new Date().getTime();
-		message 	= {
-			"timestamp": timestamp,
-			"URL": comment
-		}
-
-		link.addEventListener( "click", messenger.bind( null, message ), false);
+		link.addEventListener( "click", messenger.bind( null, comment ), false);
 
 	}
 };

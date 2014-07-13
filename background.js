@@ -30,8 +30,7 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 // tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	var isLoading,
-		tabName,
-		tabList;
+		tabName;
 
 	isLoading = changeInfo.status;
 
