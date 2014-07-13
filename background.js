@@ -25,10 +25,7 @@ var messageListener = function(message, sender, sendResponse) {
 	
 }
 
-
-
-// tab change listener runs URL checking function
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+var tabUpdateListener = function(tabId, changeInfo, tab) {
 	var isLoading,
 		tabName;
 
@@ -46,7 +43,7 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		// turn clickFlag off 
 		clickFlag = false;		
 	}
-} );
+}
 
 // create array to which all scraped pages are pushed
 var tabList = Object(),
@@ -55,6 +52,7 @@ var tabList = Object(),
 
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener( pageActionListener );
-
 // listens for messages passed when chrome storage is altered
 chrome.runtime.onMessage.addListener( messageListener );
+// tab change listener runs URL checking function
+chrome.tabs.onUpdated.addListener( tabUpdateListener );
