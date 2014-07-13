@@ -13,7 +13,9 @@ function getCommentURL( linkToPost ) {
 	// check if next row was found
 	if( commentRow ) {
 		commentLink = commentRow.querySelector("a:last-child");  // get the last link in that row
-		if ( commentLink )
+
+		// comments don't exist for "x is hiring" listings
+		if ( commentLink ) 
 			commentURL = commentLink.getAttribute("href");	// get the href attribute of comment link
 
 		// return comment url
@@ -21,33 +23,16 @@ function getCommentURL( linkToPost ) {
 	}
 }
 
+// convert nodeList to array and get rid
 function nodelistToArray( nodelist ) {
-	var array = [],
-		arrayAsObj;
+	var array = [];
 
 	for (var i = 0; i < nodelist.length; i++ ) {
-		var postObject,  // to be filled with post object later
-			currentPost = nodelist[i],  // the node for the current post
-			postURL = currentPost.getAttribute("href"),  // URL for current post link
-			discussionURL = getCommentURL(currentPost);  // pass to function; get comment URL
+		var currentPost = nodelist[i];  // the node for the current post
 		
-		// Create post object
-		postObject = {
-			"linkURL": postURL,
-			"discussionURL": discussionURL
-		}
-
-		// add if it's not a "more" link
-		if( postObject.discussionURL ) array.push( postObject );
+		// Add node to array
+		array.push( currentPost );
 	}
-
-	// create object for array
-	arrayAsObj = {
-		"scrapeArray": array
-	}
-	
-	// send array to background
-	chrome.runtime.sendMessage( arrayAsObj );
 
 	return array;
 }
@@ -58,3 +43,26 @@ var linkList,
 // grab all links including "more" link and convert to array of objects
 linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
+
+function messenger( message ) {
+	// send comment url
+	chrome.runtime.sendMessage( message );
+}
+
+// use < to omit "more"
+for (var i = 0; i < linkArray.length; i++) {
+	var link,
+		comment;
+
+	link 	= linkArray[i];
+	comment = getCommentURL( link );
+
+	if ( comment ) { 
+
+		link.addEventListener( "click", messenger.bind( null, comment ), false);
+
+	}
+};
+
+
+
