@@ -1,4 +1,6 @@
-// takes a post link and returns its comment url
+/**
+* Functions
+*/
 function getCommentURL( linkToPost ) {
 	var postCell,
 		postRow,
@@ -36,17 +38,21 @@ function nodelistToArray( nodelist ) {
 	return array;
 }
 
+// send comment url
+function messenger( message ) {
+	chrome.runtime.sendMessage( message );
+}
+
+
+/**
+* Vars and Events
+*/
 var linkList,
 	linkArray;
 
 // grab all links including "more" link and convert to array of objects
 linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
-
-function messenger( message ) {
-	// send comment url
-	chrome.runtime.sendMessage( message );
-}
 
 // use < to omit "more"
 for (var i = 0; i < linkArray.length; i++) {
@@ -62,6 +68,3 @@ for (var i = 0; i < linkArray.length; i++) {
 
 	}
 };
-
-
-
