@@ -1,6 +1,7 @@
-
-// Add listener for pageaction
-chrome.pageAction.onClicked.addListener(function(tab) {
+/**
+* Listener Callbacks
+*/
+var pageActionListener = function(tab) {
 	var destination,
 		commentURL,
 		tabId,
@@ -16,19 +17,18 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 
 	// navigate tab to new url
 	chrome.tabs.update(tabId, {url: destination});
-});
+}
 
-// listens for messages passed when chrome storage is altered
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+
+var messageListener = function(message, sender, sendResponse) {
     var tabName;
 
     clickFlag = true;
     mostRecentComment = message;
 	
-});
+}
 
-// tab change listener runs URL checking function
-chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+var tabUpdateListener = function(tabId, changeInfo, tab) {
 	var isLoading,
 		tabName;
 
@@ -46,9 +46,19 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 		// turn clickFlag off 
 		clickFlag = false;		
 	}
-} );
+}
 
-// create array to which all scraped pages are pushed
+
+/**
+* Vars and Events
+*/
 var tabList = Object(),
 	mostRecentComment,
 	clickFlag;
+
+// Add listener for pageaction
+chrome.pageAction.onClicked.addListener( pageActionListener );
+// listens for messages passed when chrome storage is altered
+chrome.runtime.onMessage.addListener( messageListener );
+// tab change listener runs URL checking function
+chrome.tabs.onUpdated.addListener( tabUpdateListener );
