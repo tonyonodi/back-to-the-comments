@@ -27,18 +27,23 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
     clickFlag = true;
     
-    // add comment url and timestamp to tab array
-	tabList.push( message );
+    mostRecentComment = message;
+	
 });
 
 // tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 	var isLoading,
-		tabName;
+		tabName,
+		tabList;
 
 	isLoading = changeInfo.status;
 
 	if ( clickFlag && isLoading ) {
+
+		// add comment url to tab object
+		tabName = "tab_" + tabId;
+		tabList[ tabName ] = mostRecentComment;
 		
 		// show page action
 		chrome.pageAction.show( tabId );
@@ -49,5 +54,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 } );
 
 // create array to which all scraped pages are pushed
-var tabList = Array(),
+var tabList = Object(),
+	mostRecentComment,
 	clickFlag;
