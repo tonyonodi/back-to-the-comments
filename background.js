@@ -3,12 +3,16 @@
 chrome.pageAction.onClicked.addListener(function(tab) {
 	var destination,
 		tabId,
-		tabName;
+		tabName,
+		hnTimestamp,
+		currentTimestamp;
 
-	// get comment url from tab object
-	tabId = tab.id;
-	tabName = "tab_" + tabId;
-	commentURL = tabList[ tabName ];
+	currentTimestamp = new Date.getTime();
+	
+	// get comment url from tab list
+	for ( tab in tablist ) {
+		
+	}
 
 	// create URL of comments page
 	destination = "http://news.ycombinator.com/" + commentURL;
