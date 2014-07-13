@@ -2,8 +2,14 @@
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener(function(tab) {
 	var destination,
+		commentURL,
 		tabId,
 		tabName;
+
+	// retrieve comment from tabList
+	tabId 	   = tab.id;
+	tabName    = "tab_" + tabId;
+	commentURL = tabList[ tabName ];
 
 	// create URL of comments page
 	destination = "http://news.ycombinator.com/" + commentURL;
