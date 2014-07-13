@@ -22,12 +22,9 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     var tabName;
 
     clickFlag = true;
-
-    console.log(sender);
     
-    // add comment url to tab object
-	// tabName = "tab_" + tabId;
-	// tabList[ tabName ] = message;
+    // add comment url and timestamp to tab array
+	tabList.push( message );
 });
 
 // tab change listener runs URL checking function
