@@ -17,14 +17,15 @@ var pageActionListener = function(tab) {
 	chrome.tabs.update(tabId, {url: destination});
 }
 
-// listens for messages passed when chrome storage is altered
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+var messageListener = function(message, sender, sendResponse) {
     var tabName;
 
     clickFlag = true;
     mostRecentComment = message;
 	
-});
+}
+
+
 
 // tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
@@ -54,3 +55,6 @@ var tabList = Object(),
 
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener( pageActionListener );
+
+// listens for messages passed when chrome storage is altered
+chrome.runtime.onMessage.addListener( messageListener );
