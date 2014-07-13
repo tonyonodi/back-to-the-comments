@@ -21,13 +21,15 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 
 // tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-	var updateTime = new Date().getTime(),
-		latency,
+	var latency,
 		isLoading;
 
 	isLoading = changeInfo.status;
 
 	if ( clickFlag && isLoading ) {
+
+		// add comment url to pageaction
+
 		
 		// show page action
 		chrome.pageAction.show( tabId );
