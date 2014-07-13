@@ -1,6 +1,5 @@
 
-// Add listener for pageaction
-chrome.pageAction.onClicked.addListener(function(tab) {
+var pageActionListener = function(tab) {
 	var destination,
 		commentURL,
 		tabId,
@@ -16,7 +15,7 @@ chrome.pageAction.onClicked.addListener(function(tab) {
 
 	// navigate tab to new url
 	chrome.tabs.update(tabId, {url: destination});
-});
+}
 
 // listens for messages passed when chrome storage is altered
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
@@ -52,3 +51,6 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 var tabList = Object(),
 	mostRecentComment,
 	clickFlag;
+
+// Add listener for pageaction
+chrome.pageAction.onClicked.addListener( pageActionListener );
