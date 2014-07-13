@@ -22,10 +22,12 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     var tabName;
 
     clickFlag = true;
+
+    console.log(sender);
     
     // add comment url to tab object
-	tabName = "tab_" + tabId;
-	tabList[ tabName ] = message;
+	// tabName = "tab_" + tabId;
+	// tabList[ tabName ] = message;
 });
 
 // tab change listener runs URL checking function
@@ -46,5 +48,5 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
 } );
 
 // create array to which all scraped pages are pushed
-var tabList = Object(),
+var tabList = Array(),
 	clickFlag;
