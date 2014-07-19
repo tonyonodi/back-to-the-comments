@@ -18,12 +18,6 @@ var pageActionListener = function(tab) {
 	// navigate tab to new url
 	// chrome.tabs.update(tabId, {url: destination});
 
-	// inject script
-	chrome.tabs.executeScript(tabId, { 
-	  code: "document.body.appendChild(document.createElement('script')).src='" + 
-	    chrome.extension.getURL("inject.js") +"';" 
-	}, null);
-
 	// save comment URL to window object
 	chrome.tabs.executeScript(tabId, {
 		code: "window.postMessage( {commentURL: '" + commentURL + "'}, '*' );"
@@ -50,6 +44,12 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 		// add comment url to tab object
 		tabName = "tab_" + tabId;
 		tabList[ tabName ] = mostRecentComment;
+
+		// inject script
+		chrome.tabs.executeScript(tabId, { 
+		  code: "document.body.appendChild(document.createElement('script')).src='" + 
+		    chrome.extension.getURL("inject.js") +"';" 
+		}, null);
 		
 		// show page action
 		chrome.pageAction.show( tabId );
