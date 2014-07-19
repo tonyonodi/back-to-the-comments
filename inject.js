@@ -1,1 +1,6 @@
-console.log("inject.js has been injected!");
+var commentIframe;
+
+commentIframe = document.createElement("iframe");
+
+
+
