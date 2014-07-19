@@ -41,6 +41,10 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 
 	if ( clickFlag && isLoading ) {
 
+		// add comment url to tab object.
+		tabName = "tab_" + tabId;
+        tabList[ tabName ] = mostRecentComment;
+
 		// inject script
 		chrome.tabs.executeScript(tabId, { 
 		  code: "document.body.appendChild(document.createElement('script')).src='" + 
