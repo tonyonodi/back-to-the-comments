@@ -18,15 +18,15 @@ var pageActionListener = function(tab) {
 	// navigate tab to new url
 	// chrome.tabs.update(tabId, {url: destination});
 
-	// save comment URL to window object
-	chrome.tabs.executeScript(tabId, {
-		code: "$('window').postmessage( {commentURL: '" + commentURL + "'}, '*' );"
-	}, null)
-
 	// inject script
 	chrome.tabs.executeScript(tabId, { 
 	  code: "document.body.appendChild(document.createElement('script')).src='" + 
 	    chrome.extension.getURL("inject.js") +"';" 
+	}, null);
+
+	// save comment URL to window object
+	chrome.tabs.executeScript(tabId, {
+		code: "window.postMessage( {commentURL: '" + commentURL + "'}, '*' );"
 	}, null);
 }
 
