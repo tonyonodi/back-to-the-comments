@@ -18,8 +18,6 @@ var pageActionListener = function(tab) {
 	// navigate tab to new url
 	// chrome.tabs.update(tabId, {url: destination});
 
-	console.log("document.body.appendChild(document.createElement('script')).src='" + chrome.extension.getURL("inject.js") +"';" )
-
 	chrome.tabs.executeScript(tabId, { 
 	  code: "document.body.appendChild(document.createElement('script')).src='" + 
 	    chrome.extension.getURL("inject.js") +"';" 
