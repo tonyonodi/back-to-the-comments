@@ -1,5 +1,6 @@
 function receiveMessage(event) {
-  console.log("got that message!");
+  console.log(event.origin);
+  console.log(event.data);
 }
 
 
