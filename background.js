@@ -28,8 +28,16 @@ var pageActionListener = function(tab) {
 var messageListener = function(message, sender, sendResponse) {
     var tabName;
 
-    clickFlag = true;
-    mostRecentComment = message;
+    if ( message == "commentRequest" ) {
+
+    	console.log("comment request recieved");
+
+    } else{
+
+    	clickFlag = true;
+	    mostRecentComment = message;
+
+    }
 	
 }
 
