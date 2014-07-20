@@ -42,6 +42,7 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 	if ( clickFlag && isLoading ) {
 
 		// add comment url to tab object.
+		console.log(tab);
 		tabName = "tab_" + tabId;
         tabList[ tabName ] = mostRecentComment;
 
