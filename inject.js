@@ -1,6 +1,13 @@
 function receiveMessage(event) {
-  console.log(event.origin);
-  console.log(event.data);
+	var commentPath,
+		iframeURL;
+
+	// get url of comment
+	commentPath = event.data.commentURL;
+	iframeURL 	= "https://news.ycombinator.com/" + commentPath;
+
+	// create frame
+	drawIframe( iframeURL );
 }
 
 
@@ -26,7 +33,4 @@ var drawIframe = function( URL ) {
 
 }
 
-
 window.addEventListener("message", receiveMessage, false);
-
-drawIframe( "https://news.ycombinator.com/item?id=8060156" );
