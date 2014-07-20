@@ -9,9 +9,9 @@
   	"tabs",
     "<all_urls>",
     "storage",
-    "webReuest",
+    "webRequest",
     "webRequestBlocking",
-    "*://news.ycombinator.com/item?id=*"
+    "*://news.ycombinator.com/*"
   ],
   "page_action": {
     "default_icon": {

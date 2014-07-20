@@ -29,4 +29,4 @@ var drawIframe = function( URL ) {
 
 window.addEventListener("message", receiveMessage, false);
 
-drawIframe( "http://greyroomthings.com" );
+drawIframe( "http://google.com" );
