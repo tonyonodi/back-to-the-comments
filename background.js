@@ -90,7 +90,7 @@ chrome.tabs.onUpdated.addListener( tabUpdateListener );
 
 // filter request URLs
 requestFilter = {
-    urls: [ '*://*/*' ], // Pattern to match all http(s) pages
+    urls: [ '*://news.ycombinator.com/item?id=*' ], // Pattern to match all http(s) pages
     types: [ 'sub_frame' ]
 };
 // make request blocking

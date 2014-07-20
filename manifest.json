@@ -11,7 +11,7 @@
     "storage",
     "webRequest",
     "webRequestBlocking",
-    "*://news.ycombinator.com/*"
+    "*://news.ycombinator.com/item?id=*"
   ],
   "page_action": {
     "default_icon": {

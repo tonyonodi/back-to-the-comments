@@ -29,4 +29,4 @@ var drawIframe = function( URL ) {
 
 window.addEventListener("message", receiveMessage, false);
 
-drawIframe( "https://news.ycombinator.com/" );
+drawIframe( "https://news.ycombinator.com/item?id=8060156" );
