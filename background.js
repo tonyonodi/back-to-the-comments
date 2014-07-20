@@ -77,7 +77,9 @@ var stripHeaders = function( info ) {
 */
 var tabList = Object(),
 	mostRecentComment,
-	clickFlag;
+	clickFlag,
+	requestFilter,
+	requestOptions;
 
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener( pageActionListener );
@@ -85,11 +87,13 @@ chrome.pageAction.onClicked.addListener( pageActionListener );
 chrome.runtime.onMessage.addListener( messageListener );
 // tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener( tabUpdateListener );
+
+// filter request URLs
+requestFilter = {
+    urls: [ '*://*/*' ], // Pattern to match all http(s) pages
+    types: [ 'sub_frame' ]
+};
+// make request blocking
+requestOptions = ['blocking', 'responseHeaders'];
 // webRequest listener strips out yt headers preventing iframe loading
-chrome.webRequest.onHeadersReceived.addListener( stripHeaders ,
-    {
-        urls: [ '*://*/*' ], // Pattern to match all http(s) pages
-        types: [ 'sub_frame' ]
-    },
-    ['blocking', 'responseHeaders']
-);
+chrome.webRequest.onHeadersReceived.addListener( stripHeaders, requestFilter, requestOptions );
