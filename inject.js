@@ -12,7 +12,7 @@ function receiveMessage(event) {
 var showComments = function( URL ) {
 	var commentFrame;
 
-	commentFrame = document.querySelector( "#frameID" );
+	commentFrame = document.querySelector( "#comment-frame" );
 	commentFrame.setAttribute( "src", URL );
 
 }
