@@ -10,8 +10,11 @@ function receiveMessage(event) {
 }
 
 var showComments = function( URL ) {
-	var commentFrame;
+	var commentFrame,
+		frameset;
 
+	frameset = document.querySelector( "frameset" );
+	frameset.setAttribute( "cols", "50%,50%" );
 	commentFrame = document.querySelector( "#comment-frame" );
 	commentFrame.setAttribute( "src", URL );
 
