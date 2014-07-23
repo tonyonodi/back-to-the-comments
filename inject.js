@@ -11,7 +11,10 @@ function receiveMessage(event) {
 
 var showComments = function( URL ) {
 	var commentFrame;
-	
+
+	commentFrame = document.querySelector( "#frameID" );
+	commentFrame.setAttribute( "src", URL );
+
 }
 
 var drawIframe = function() {
