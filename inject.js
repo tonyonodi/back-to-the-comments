@@ -12,6 +12,7 @@ function receiveMessage(event) {
 
 var drawIframe = function( URL ) {
 	var frameset,
+		pageURL,
 		pageFrame,
 		commentFrame,
 		html,
@@ -22,11 +23,14 @@ var drawIframe = function( URL ) {
 	frameset = document.createElement( "frameset" )
 	pageFrame = document.createElement( "frame" );
 	commentFrame = document.createElement( "frame" );
+	pageURL = document.URL;
 
 	body.parentNode.removeChild( body );
 	frameset.appendChild( pageFrame );
 	frameset.appendChild( commentFrame );
 	html.appendChild( frameset );
+
+	pageFrame.setAttribute( "src", pageURL );
 }
 
 drawIframe(  );
