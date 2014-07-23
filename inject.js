@@ -10,12 +10,14 @@ function receiveMessage(event) {
 	drawIframe( iframeURL );
 }
 
-
 var drawIframe = function( URL ) {
 	var iframe,
+		html,
 		body,
 		firstElement;
 
+	// get html
+	html = document.querySelector( "html" );
 	// get body
 	body = document.querySelector( "body" );
 	// get first child of body
@@ -25,11 +27,18 @@ var drawIframe = function( URL ) {
 	iframe = document.createElement( "iframe" );
 	// set iframe destination and style
 	iframe.setAttribute( "src", URL );
-	iframe.setAttribute( "width", "100%" );
-	iframe.setAttribute( "height", "500px" );
 	iframe.setAttribute( "sandbox", "allow-same-origin allow-scripts allow-popups allow-forms" );
+
+	// styling
+	iframe.style.height = "100%";
+	iframe.style.width = "50%";
+	iframe.style.position = "fixed";
+	iframe.style.right = "0";
+	body.style.width = "50%";
+	html.style.height = "100%";
+
 	// add to start of body element
-	body.insertBefore( iframe, firstElement )
+	html.insertBefore( iframe, body );
 
 }
 
