@@ -1,13 +1,20 @@
 function receiveMessage(event) {
 	var commentPath,
-		iframeURL;
+		frameURL;
 
 	// get url of comment
 	commentPath = event.data.commentURL;
-	iframeURL 	= "https://news.ycombinator.com/" + commentPath;
+	frameURL 	= "https://news.ycombinator.com/" + commentPath;
+
+	showComments( frameURL )
 }
 
-var drawIframe = function( URL ) {
+var showComments = function( URL ) {
+	var commentFrame;
+	
+}
+
+var drawIframe = function() {
 	var frameset,
 		pageURL,
 		pageFrame,
