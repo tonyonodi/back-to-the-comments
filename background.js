@@ -57,7 +57,7 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 
 		// inject.js
 		chrome.tabs.executeScript(tabId, { 
-		  code: "document.body.appendChild(document.createElement('script')).src='" + 
+		  code: "document.head.appendChild(document.createElement('script')).src='" + 
 		    chrome.extension.getURL("inject.js") +"';"
 		}, null);
 		

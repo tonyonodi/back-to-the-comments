@@ -32,7 +32,7 @@ var drawIframe = function( URL ) {
 
 	pageFrame.setAttribute( "src", pageURL );
 }
-
+console.log("CUNT");
 drawIframe(  );
 
 window.addEventListener("message", receiveMessage, false);
