@@ -45,7 +45,17 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 		tabName = "tab_" + tabId;
         tabList[ tabName ] = mostRecentComment;
 
-		// inject script
+        chrome.tabs.insertCSS( tabId, {
+        	code: "body { display: none; }"
+        }, null )
+
+        // stop document from loading
+		chrome.tabs.executeScript(tabId, { 
+		  code: "window.stop()",
+		  runAt: "document_start"
+		}, null);
+
+		// inject.js
 		chrome.tabs.executeScript(tabId, { 
 		  code: "document.body.appendChild(document.createElement('script')).src='" + 
 		    chrome.extension.getURL("inject.js") +"';"
