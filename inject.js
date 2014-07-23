@@ -34,6 +34,5 @@ var drawIframe = function( URL ) {
 	pageFrame.setAttribute( "src", pageURL );
 }
 
-console.log(document.body);
 drawIframe();
 window.addEventListener("message", receiveMessage, false);
