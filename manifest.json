@@ -6,7 +6,12 @@
   "version": "0.3.0",
 
   "permissions": [
-  	"tabs","<all_urls>","storage"
+  	"tabs",
+    "<all_urls>",
+    "storage",
+    "webRequest",
+    "webRequestBlocking",
+    "*://news.ycombinator.com/item?id=*"
   ],
   "page_action": {
     "default_icon": {
@@ -25,5 +30,9 @@
     "js": ["hackernews.js"],
     "run_at": "document_end"
     }
+  ],
+  "options_page": "options.html",
+  "web_accessible_resources": [
+    "inject.js"
   ]
 }

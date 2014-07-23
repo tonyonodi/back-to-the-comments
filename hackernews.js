@@ -20,12 +20,11 @@ function getCommentURL( linkToPost ) {
 		if ( commentLink ) 
 			commentURL = commentLink.getAttribute("href");	// get the href attribute of comment link
 
-		// return comment url
 		return commentURL;
 	}
 }
 
-// convert nodeList to array and get rid
+// convert nodeList to array
 function nodelistToArray( nodelist ) {
 	var array = [];
 
