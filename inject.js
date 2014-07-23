@@ -42,6 +42,7 @@ var drawIframe = function() {
 
 	frameset.appendChild( pageFrame );
 	frameset.appendChild( commentFrame );
+	frameset.setAttribute( "cols", "100%,0%" );
 	html.appendChild( frameset );
 
 	pageFrame.setAttribute( "src", pageURL );
