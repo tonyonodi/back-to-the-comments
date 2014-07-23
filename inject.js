@@ -5,9 +5,6 @@ function receiveMessage(event) {
 	// get url of comment
 	commentPath = event.data.commentURL;
 	iframeURL 	= "https://news.ycombinator.com/" + commentPath;
-
-	// create frame
-	drawIframe(  );
 }
 
 var drawIframe = function( URL ) {
@@ -17,7 +14,7 @@ var drawIframe = function( URL ) {
 		commentFrame,
 		html,
 		body;
-
+	console.log("drawing iframe");
 	html = document.querySelector( "html" );
 	body = document.querySelector( "body" );
 	frameset = document.createElement( "frameset" )
@@ -25,14 +22,15 @@ var drawIframe = function( URL ) {
 	commentFrame = document.createElement( "frame" );
 	pageURL = document.URL;
 
-	body.parentNode.removeChild( body );
+	if ( body )
+		body.parentNode.removeChild( body );
+
 	frameset.appendChild( pageFrame );
 	frameset.appendChild( commentFrame );
 	html.appendChild( frameset );
 
 	pageFrame.setAttribute( "src", pageURL );
 }
-console.log("CUNT");
-drawIframe(  );
 
+drawIframe(  );
 window.addEventListener("message", receiveMessage, false);
