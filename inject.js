@@ -7,7 +7,7 @@ function receiveMessage(event) {
 	iframeURL 	= "https://news.ycombinator.com/" + commentPath;
 
 	// create frame
-	drawIframe( iframeURL );
+	drawIframe(  );
 }
 
 var drawIframe = function( URL ) {
@@ -22,8 +22,10 @@ var drawIframe = function( URL ) {
 	// get body
 	body = document.querySelector( "body" );
 
-	
+	body.parentNode.removeChild(body);
 
 }
+
+drawIframe(  );
 
 window.addEventListener("message", receiveMessage, false);
