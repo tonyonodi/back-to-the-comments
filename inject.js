@@ -11,7 +11,9 @@ function receiveMessage(event) {
 }
 
 var drawIframe = function( URL ) {
-	var iframe,
+	var frameset,
+		pageFrame,
+		commentFrame,
 		html,
 		body,
 		firstElement;
