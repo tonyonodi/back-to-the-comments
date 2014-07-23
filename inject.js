@@ -17,13 +17,16 @@ var drawIframe = function( URL ) {
 		html,
 		body;
 
-	// get html
 	html = document.querySelector( "html" );
-	// get body
 	body = document.querySelector( "body" );
+	frameset = document.createElement( "frameset" )
+	pageFrame = document.createElement( "frame" );
+	commentFrame = document.createElement( "frame" );
 
-	body.parentNode.removeChild(body);
-
+	body.parentNode.removeChild( body );
+	frameset.appendChild( pageFrame );
+	frameset.appendChild( commentFrame );
+	html.appendChild( frameset );
 }
 
 drawIframe(  );
