@@ -14,12 +14,14 @@ var drawIframe = function( URL ) {
 		commentFrame,
 		html,
 		body;
-	console.log("drawing iframe");
+
 	html = document.querySelector( "html" );
 	body = document.querySelector( "body" );
-	frameset = document.createElement( "frameset" )
+	frameset = document.createElement( "frameset" );
 	pageFrame = document.createElement( "frame" );
 	commentFrame = document.createElement( "frame" );
+	pageFrame.setAttribute( "id", "page-frame" );
+	commentFrame.setAttribute( "id", "comment-frame" );
 	pageURL = document.URL;
 
 	if ( body )
@@ -32,5 +34,6 @@ var drawIframe = function( URL ) {
 	pageFrame.setAttribute( "src", pageURL );
 }
 
-drawIframe(  );
+console.log(document.body);
+drawIframe();
 window.addEventListener("message", receiveMessage, false);
