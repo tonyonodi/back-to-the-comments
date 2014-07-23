@@ -15,15 +15,12 @@ var drawIframe = function( URL ) {
 		pageFrame,
 		commentFrame,
 		html,
-		body,
-		firstElement;
+		body;
 
 	// get html
 	html = document.querySelector( "html" );
 	// get body
 	body = document.querySelector( "body" );
-	// get first child of body
-	firstElement = document.querySelector( "body *" );
 
 	// create an iframe
 	iframe = document.createElement( "iframe" );
