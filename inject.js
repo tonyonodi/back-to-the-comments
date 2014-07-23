@@ -22,22 +22,7 @@ var drawIframe = function( URL ) {
 	// get body
 	body = document.querySelector( "body" );
 
-	// create an iframe
-	iframe = document.createElement( "iframe" );
-	// set iframe destination and style
-	iframe.setAttribute( "src", URL );
-	iframe.setAttribute( "sandbox", "allow-same-origin allow-scripts allow-popups allow-forms" );
-
-	// styling
-	iframe.style.height = "100%";
-	iframe.style.width = "50%";
-	iframe.style.position = "fixed";
-	iframe.style.right = "0";
-	body.style.width = "50%";
-	html.style.height = "100%";
-
-	// add to start of body element
-	html.insertBefore( iframe, body );
+	
 
 }
 
