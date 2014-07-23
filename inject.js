@@ -2,11 +2,12 @@ function receiveMessage(event) {
 	var commentPath,
 		frameURL;
 
-	// get url of comment
 	commentPath = event.data.commentURL;
-	frameURL 	= "https://news.ycombinator.com/" + commentPath;
-
-	showComments( frameURL )
+	
+	if ( commentPath ) {
+		frameURL 	= "https://news.ycombinator.com/" + commentPath;
+		showComments( frameURL )
+	}
 }
 
 var showComments = function( URL ) {
@@ -17,7 +18,7 @@ var showComments = function( URL ) {
 	frameset.setAttribute( "cols", "50%,50%" );
 	commentFrame = document.querySelector( "#comment-frame" );
 	commentFrame.setAttribute( "src", URL );
-
+	console.log("showComments has run");
 }
 
 var drawIframe = function() {
