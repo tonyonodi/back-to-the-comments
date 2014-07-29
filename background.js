@@ -1,4 +1,14 @@
 /**
+* Variables
+*/
+var tabList = Object(),
+	mostRecentComment,
+	clickFlag,
+	requestFilter,
+	requestOptions;
+
+
+/**
 * Listener Callbacks
 */
 var pageActionListener = function(tab) {
@@ -82,14 +92,8 @@ var stripHeaders = function( info ) {
 
 
 /**
-* Vars and Events
+* Vars Events
 */
-var tabList = Object(),
-	mostRecentComment,
-	clickFlag,
-	requestFilter,
-	requestOptions;
-
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener( pageActionListener );
 // listens for messages passed when chrome storage is altered
