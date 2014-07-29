@@ -34,11 +34,12 @@ var pageActionListener = function(tab) {
 	}, null);
 }
 
-
 var messageListener = function(message, sender, sendResponse) {
-    var tabName;
 
+    // Sets flag to show that HN link has been clicked but tab update
+    // event hasn't yet occurred
     clickFlag = true;
+    // gets URL sent from HN and saves it ready for tab update event
     mostRecentComment = message;
 	
 }
@@ -79,6 +80,10 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 	}
 }
 
+
+/**
+* Functions
+*/
 var stripHeaders = function( info ) {
     var headers = info.responseHeaders;
     for (var i=headers.length-1; i>=0; --i) {
@@ -92,7 +97,7 @@ var stripHeaders = function( info ) {
 
 
 /**
-* Vars Events
+* Listeners
 */
 // Add listener for pageaction
 chrome.pageAction.onClicked.addListener( pageActionListener );
@@ -101,7 +106,11 @@ chrome.runtime.onMessage.addListener( messageListener );
 // tab change listener runs URL checking function
 chrome.tabs.onUpdated.addListener( tabUpdateListener );
 
-// filter request URLs
+
+/**
+* Strip headers
+* allows HN comment pages to be loaded in a frame
+*/
 requestFilter = {
     urls: [ '*://news.ycombinator.com/item?id=*' ], // Pattern to match all http(s) pages
     types: [ 'sub_frame' ]
