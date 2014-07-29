@@ -1,8 +1,9 @@
 /**
-* Variable
+* Variables
 */
 var linkList,
 	linkArray;
+
 
 /**
 * Functions

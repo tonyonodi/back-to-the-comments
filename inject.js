@@ -7,7 +7,8 @@ var receiveMessage = function(event) {
 
 	commentPath = event.data.commentURL;
 	
-	if ( commentPath ) {
+	// if statement required as "external" messages are often passed
+	if ( commentPath ) { 
 		frameURL 	= "https://news.ycombinator.com/" + commentPath;
 		showComments( frameURL )
 	}
@@ -22,6 +23,10 @@ var showComments = function( URL ) {
 	commentFrame = document.querySelector( "#comment-frame" );
 	commentFrame.setAttribute( "src", URL );
 	console.log("showComments has run");
+}
+
+var iframeOpen = function() {
+
 }
 
 var drawIframe = function() {
