@@ -1,4 +1,9 @@
 /**
+* Variables
+*/
+var iframeOpen;
+
+/**
 * Functions and callbacks
 */
 var receiveMessage = function(event) {
@@ -10,22 +15,33 @@ var receiveMessage = function(event) {
 	// if statement required as "external" messages are often passed
 	if ( commentPath ) { 
 		frameURL 	= "https://news.ycombinator.com/" + commentPath;
-		showComments( frameURL )
+		toggleComments( frameURL )
 	}
 }
 
-var showComments = function( URL ) {
+var toggleComments = function( URL ) {
 	var commentFrame,
-		frameset;
-
+		frameset,
+		frameHasSrc;
+	console.log("click occurred")
 	frameset = document.querySelector( "frameset" );
-	frameset.setAttribute( "cols", "50%,50%" );
 	commentFrame = document.querySelector( "#comment-frame" );
-	commentFrame.setAttribute( "src", URL );
-	console.log("showComments has run");
-}
+	frameHasSrc = commentFrame.getAttribute("src");
 
-var iframeOpen = function() {
+	// set frame src if none is present
+	if ( ! frameHasSrc ) {
+		commentFrame.setAttribute( "src", URL );
+	}
+	
+	// open/close iframe
+	if ( iframeOpen ) {
+		frameset.setAttribute( "cols", "100%,0%" );
+	} else {
+		frameset.setAttribute( "cols", "50%,50%" );
+	}
+
+	// toggle iframeOpen flag
+	iframeOpen = Math.abs( iframeOpen - 1 );
 
 }
 
@@ -61,5 +77,6 @@ var drawIframe = function() {
 /**
 * Events
 */
+iframeOpen = 0;
 drawIframe();
 window.addEventListener("message", receiveMessage, false);
