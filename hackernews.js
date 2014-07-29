@@ -1,4 +1,10 @@
 /**
+* Variable
+*/
+var linkList,
+	linkArray;
+
+/**
 * Functions
 */
 function getCommentURL( linkToPost ) {
@@ -44,11 +50,8 @@ function messenger( message ) {
 
 
 /**
-* Vars and Events
+* Events
 */
-var linkList,
-	linkArray;
-
 // grab all links including "more" link and convert to array of objects
 linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
