@@ -1,4 +1,7 @@
-function receiveMessage(event) {
+/**
+* Functions and callbacks
+*/
+var receiveMessage = function(event) {
 	var commentPath,
 		frameURL;
 
@@ -49,5 +52,9 @@ var drawIframe = function() {
 	pageFrame.setAttribute( "src", pageURL );
 }
 
+
+/**
+* Events
+*/
 drawIframe();
 window.addEventListener("message", receiveMessage, false);
