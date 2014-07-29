@@ -1,5 +1,5 @@
 /**
-* Variable
+* Variables
 */
 var linkList,
 	linkArray;

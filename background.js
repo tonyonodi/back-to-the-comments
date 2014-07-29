@@ -12,8 +12,7 @@ var tabList = Object(),
 * Listener Callbacks
 */
 var pageActionListener = function(tab) {
-	var destination,
-		commentURL,
+	var commentURL,
 		tabId,
 		tabName;
 
@@ -21,12 +20,6 @@ var pageActionListener = function(tab) {
 	tabId 	   = tab.id;
 	tabName    = "tab_" + tabId;
 	commentURL = tabList[ tabName ];
-
-	// create URL of comments page
-	destination = "http://news.ycombinator.com/" + commentURL;
-
-	// navigate tab to new url
-	// chrome.tabs.update(tabId, {url: destination});
 
 	// save comment URL to window object
 	chrome.tabs.executeScript(tabId, {
