@@ -105,7 +105,7 @@ chrome.tabs.onUpdated.addListener( tabUpdateListener );
 * allows HN comment pages to be loaded in a frame
 */
 requestFilter = {
-    urls: [ '*://news.ycombinator.com/item?id=*' ], // Pattern to match all http(s) pages
+    urls: [ '*://*/*' ], // Pattern to match all http(s) pages
     types: [ 'sub_frame' ]
 };
 // make request blocking
