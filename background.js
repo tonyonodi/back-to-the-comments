@@ -11,6 +11,7 @@ var tabList = Object(),
 /**
 * Listener Callbacks
 */
+
 var pageActionListener = function(tab) {
 	var commentURL,
 		tabId,
@@ -41,9 +42,10 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 	var isLoading,
 		tabName;
 
-	isLoading = changeInfo.status;
+	isLoading = changeInfo.status == "loading";
 
-	if ( clickFlag && isLoading ) {
+	console.log(isLoading);
+    if ( clickFlag && isLoading ) {
 
 		// add comment url to tab object.
 		tabName = "tab_" + tabId;
