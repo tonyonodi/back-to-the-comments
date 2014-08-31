@@ -2,6 +2,7 @@
 * Variables
 */
 var tabList = Object(),
+    urlList = Object(),
 	mostRecentComment,
 	clickFlag,
 	requestFilter,
@@ -11,6 +12,7 @@ var tabList = Object(),
 /**
 * Listener Callbacks
 */
+
 var pageActionListener = function(tab) {
 	var commentURL,
 		tabId,
@@ -39,38 +41,29 @@ var messageListener = function(message, sender, sendResponse) {
 
 var tabUpdateListener = function(tabId, changeInfo, tab) {
 	var isLoading,
-		tabName;
+		tabName,
+        hasLoaded;
 
-	isLoading = changeInfo.status;
+    // check that event is a load event.
+	isLoading = changeInfo.status == "loading";
+    hasLoaded = urlList[ tab.url ];
 
-	if ( clickFlag && isLoading ) {
+    // Check that this is the first tab to appear since HN post was clicked.
+    if ( clickFlag && isLoading ) {
 
-		// add comment url to tab object.
+        // add comment url to tab object.
 		tabName = "tab_" + tabId;
         tabList[ tabName ] = mostRecentComment;
+        urlList[ tab.url ] = mostRecentComment;
+        console.log( urlList );
 
-        chrome.tabs.insertCSS( tabId, {
-        	code: "body { display: none; }"
-        }, null )
+        prepPostPage( tabId );
 
-        // stop document from loading
-		chrome.tabs.executeScript(tabId, { 
-		  code: "window.stop()",
-		  runAt: "document_start"
-		}, null);
+	} else if ( isLoading && hasLoaded ) {
+        
+        prepPostPage( tabId );
 
-		// inject.js
-		chrome.tabs.executeScript(tabId, { 
-		  code: "document.head.appendChild(document.createElement('script')).src='" + 
-		    chrome.extension.getURL("inject.js") +"';"
-		}, null);
-		
-		// show page action
-		chrome.pageAction.show( tabId );
-
-		// turn clickFlag off 
-		clickFlag = false;		
-	}
+    }
 }
 
 
@@ -86,6 +79,31 @@ var stripHeaders = function( info ) {
         }
     }
     return {responseHeaders: headers};
+}
+
+var prepPostPage = function( tabId ) {
+    
+    chrome.tabs.insertCSS( tabId, {
+        code: "body { display: none; }"
+    }, null )
+
+    // stop document from loading
+    chrome.tabs.executeScript(tabId, { 
+      code: "window.stop()",
+      runAt: "document_start"
+    }, null);
+
+    // inject.js
+    chrome.tabs.executeScript(tabId, { 
+      code: "document.head.appendChild(document.createElement('script')).src='" + 
+        chrome.extension.getURL("inject.js") +"';"
+    }, null);
+    
+    // show page action
+    chrome.pageAction.show( tabId );
+
+    // turn clickFlag off 
+    clickFlag = false;
 }
 
 
