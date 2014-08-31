@@ -2,6 +2,7 @@
 * Variables
 */
 var tabList = Object(),
+    urlList = Object(),
 	mostRecentComment,
 	clickFlag,
 	requestFilter,
@@ -42,10 +43,13 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 	var isLoading,
 		tabName;
 
+    // check that event is a load event.
 	isLoading = changeInfo.status == "loading";
+    console.log(isLoading);
 
-	console.log(isLoading);
+    // Check that this is the first tab to appear since HN post was clicked.
     if ( clickFlag && isLoading ) {
+        console.log(tab.url);
 
 		// add comment url to tab object.
 		tabName = "tab_" + tabId;
