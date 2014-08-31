@@ -62,7 +62,7 @@ var drawIframe = function() {
 	commentFrame.setAttribute( "id", "comment-frame" );
 	pageURL = document.URL;
 
-	if ( body )
+    if ( body )
 		body.parentNode.removeChild( body );
 
 	frameset.appendChild( pageFrame );
@@ -70,7 +70,7 @@ var drawIframe = function() {
 	frameset.setAttribute( "cols", "100%,0%" );
 	html.appendChild( frameset );
 
-	pageFrame.setAttribute( "src", pageURL );
+    pageFrame.setAttribute( "src", pageURL );
 }
 
 
