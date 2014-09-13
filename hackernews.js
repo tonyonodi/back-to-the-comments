@@ -8,6 +8,8 @@ var linkList,
 /**
 * Functions
 */
+
+// gets comment link for single post link.
 function getCommentURL( linkToPost ) {
 	var postCell,
 		postRow,
@@ -58,8 +60,9 @@ function messenger( message ) {
 linkList = document.querySelectorAll( "td.title a" );
 linkArray = nodelistToArray( linkList );
 
-// use < to omit "more"
-for (var i = 0; i < linkArray.length; i++) {
+// loop over all post links, get their comments and
+// add event listener.
+for (var i = 0; i < linkArray.length; i++) {  // use < to omit "more"
 	var link,
 		comment;
 

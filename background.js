@@ -87,12 +87,6 @@ var prepPostPage = function( tabId ) {
         code: "body { display: none; }"
     }, null )
 
-    // stop document from loading
-    chrome.tabs.executeScript(tabId, { 
-      code: "window.stop()",
-      runAt: "document_start"
-    }, null);
-
     // inject.js
     chrome.tabs.executeScript(tabId, { 
       code: "document.head.appendChild(document.createElement('script')).src='" + 

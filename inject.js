@@ -15,7 +15,7 @@ var receiveMessage = function(event) {
 	// if statement required as "external" messages are often passed
 	if ( commentPath ) { 
 		frameURL 	= "https://news.ycombinator.com/" + commentPath;
-		toggleComments( frameURL )
+		// toggleComments( frameURL )
 	}
 }
 
