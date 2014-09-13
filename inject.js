@@ -55,22 +55,15 @@ var drawIframe = function() {
 
 	html = document.querySelector( "html" );
 	body = document.querySelector( "body" );
-	frameset = document.createElement( "frameset" );
-	pageFrame = document.createElement( "frame" );
-	commentFrame = document.createElement( "frame" );
-	pageFrame.setAttribute( "id", "page-frame" );
-	commentFrame.setAttribute( "id", "comment-frame" );
-	pageURL = document.URL;
+	iframe = document.createElement( "iframe" );
 
-    if ( body )
+    if ( body ) {
 		body.parentNode.removeChild( body );
+    }
 
-	frameset.appendChild( pageFrame );
-	frameset.appendChild( commentFrame );
-	frameset.setAttribute( "cols", "100%,0%" );
-	html.appendChild( frameset );
+	html.appendChild( iframe );
 
-    pageFrame.setAttribute( "src", pageURL );
+    iframe.setAttribute( "src", pageURL );
 }
 
 
@@ -78,5 +71,5 @@ var drawIframe = function() {
 * Events
 */
 iframeOpen = 0;
-// drawIframe();
-// window.addEventListener("message", receiveMessage, false);
+drawIframe();
+window.addEventListener("message", receiveMessage, false);

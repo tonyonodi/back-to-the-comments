@@ -55,7 +55,6 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 		tabName = "tab_" + tabId;
         tabList[ tabName ] = mostRecentComment;
         urlList[ tab.url ] = mostRecentComment;
-        console.log( urlList );
 
         prepPostPage( tabId );
 
@@ -83,10 +82,6 @@ var stripHeaders = function( info ) {
 
 var prepPostPage = function( tabId ) {
     
-    chrome.tabs.insertCSS( tabId, {
-        code: "body { display: none; }"
-    }, null )
-
     // inject.js
     chrome.tabs.executeScript(tabId, { 
       code: "document.head.appendChild(document.createElement('script')).src='" + 
