@@ -6,7 +6,7 @@ var iframeOpen;
 /**
 * Functions and callbacks
 */
-var receiveMessage = function(event) {
+var receiveMessage = func tion(event) {
 	var commentPath,
 		frameURL;
 
@@ -78,5 +78,5 @@ var drawIframe = function() {
 * Events
 */
 iframeOpen = 0;
-drawIframe();
-window.addEventListener("message", receiveMessage, false);
+// drawIframe();
+// window.addEventListener("message", receiveMessage, false);
