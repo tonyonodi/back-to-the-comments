@@ -6,7 +6,7 @@ var iframeOpen;
 /**
 * Functions and callbacks
 */
-var receiveMessage = func tion(event) {
+var receiveMessage = function(event) {
 	var commentPath,
 		frameURL;
 
@@ -62,7 +62,6 @@ var drawIframe = function() {
     }
 
 	html.appendChild( iframe );
-
     iframe.setAttribute( "src", pageURL );
 }
 
