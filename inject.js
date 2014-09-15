@@ -23,7 +23,6 @@ var toggleComments = function( URL ) {
 	var commentFrame,
 		frameset,
 		frameHasSrc;
-	console.log("click occurred")
 	frameset = document.querySelector( "frameset" );
 	commentFrame = document.querySelector( "#comment-frame" );
 	frameHasSrc = commentFrame.getAttribute("src");
@@ -57,12 +56,7 @@ var drawIframe = function() {
 	body = document.querySelector( "body" );
 	iframe = document.createElement( "iframe" );
 
-    if ( body ) {
-		body.parentNode.removeChild( body );
-    }
-
 	html.appendChild( iframe );
-    iframe.setAttribute( "src", pageURL );
 }
 
 
