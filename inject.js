@@ -23,6 +23,7 @@ var toggleComments = function( URL ) {
 	var commentFrame,
 		frameset,
 		frameHasSrc;
+	commentDiv = document.querySelector( "#bttc-comment-div" );
 	commentFrame = document.querySelector( "#bttc-comment-frame" );
     body = document.querySelector( "body" );
 	frameHasSrc = commentFrame.getAttribute("src");
@@ -34,11 +35,11 @@ var toggleComments = function( URL ) {
 	
 	// open/close iframe
 	if ( ! iframeOpen ) {
-        commentFrame.style.width = "50%";
-        body.style.width = "50%";
+        commentDiv.style.width = "50%";
+        commentDiv.style.display = "block";
 	} else {
-        commentFrame.style.width = 0;
-        body.style.width = "100%";
+        commentDiv.style.width = "0";
+        commentDiv.style.display = "none";
 	}
 
 	// toggle iframeOpen flag
@@ -56,10 +57,13 @@ var drawIframe = function() {
 
 	html = document.querySelector( "html" );
 	body = document.querySelector( "body" );
+    iframeContainer = document.createElement( "div" );
 	iframe = document.createElement( "iframe" );
+    iframeContainer.setAttribute("id", "bttc-comment-div");
     iframe.setAttribute("id", "bttc-comment-frame");
 
-	html.insertBefore( iframe, body );
+    iframeContainer.appendChild( iframe );
+	html.insertBefore( iframeContainer, body );
 }
 
 
