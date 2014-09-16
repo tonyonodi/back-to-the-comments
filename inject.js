@@ -14,8 +14,8 @@ var receiveMessage = function(event) {
 	
 	// if statement required as "external" messages are often passed
 	if ( commentPath ) { 
-		frameURL 	= "https://news.ycombinator.com/" + commentPath;
-		// toggleComments( frameURL )
+		frameURL = "https://news.ycombinator.com/" + commentPath;
+		toggleComments( frameURL )
 	}
 }
 
@@ -23,8 +23,8 @@ var toggleComments = function( URL ) {
 	var commentFrame,
 		frameset,
 		frameHasSrc;
-	frameset = document.querySelector( "frameset" );
-	commentFrame = document.querySelector( "#comment-frame" );
+	commentFrame = document.querySelector( "#bttc-comment-frame" );
+    body = document.querySelector( "body" );
 	frameHasSrc = commentFrame.getAttribute("src");
 
 	// set frame src if none is present
@@ -33,10 +33,12 @@ var toggleComments = function( URL ) {
 	}
 	
 	// open/close iframe
-	if ( iframeOpen ) {
-		frameset.setAttribute( "cols", "100%,0%" );
+	if ( ! iframeOpen ) {
+        commentFrame.style.width = "50%";
+        body.style.width = "50%";
 	} else {
-		frameset.setAttribute( "cols", "50%,50%" );
+        commentFrame.style.width = 0;
+        body.style.width = "100%";
 	}
 
 	// toggle iframeOpen flag
@@ -55,8 +57,9 @@ var drawIframe = function() {
 	html = document.querySelector( "html" );
 	body = document.querySelector( "body" );
 	iframe = document.createElement( "iframe" );
+    iframe.setAttribute("id", "bttc-comment-frame");
 
-	html.appendChild( iframe );
+	html.insertBefore( iframe, body );
 }
 
 

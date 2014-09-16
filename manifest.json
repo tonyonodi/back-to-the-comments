@@ -33,6 +33,7 @@
   ],
   "options_page": "options.html",
   "web_accessible_resources": [
-    "inject.js"
+    "inject.js",
+    "comments.css"
   ]
 }

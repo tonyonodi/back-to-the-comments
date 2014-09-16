@@ -1,0 +1,12 @@
+#bttc-comment-frame {
+    width: 0;
+    z-index 100;
+    position: fixed;
+    right: 0;
+    height: 100%;
+    background: white;
+}
+
+body {
+    z-index: 0;
+}

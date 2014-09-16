@@ -87,6 +87,11 @@ var prepPostPage = function( tabId ) {
       code: "document.head.appendChild(document.createElement('script')).src='" + 
         chrome.extension.getURL("inject.js") +"';"
     }, null);
+
+    // comments.css
+    chrome.tabs.insertCSS(tabId, { 
+        file: "css/comments.css"
+    });
     
     // show page action
     chrome.pageAction.show( tabId );
