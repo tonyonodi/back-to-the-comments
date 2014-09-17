@@ -69,14 +69,22 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 /**
 * Functions
 */
+
+// Add method to String type to insert substring at an index 
+String.prototype.splice = function( index, substring ) {
+    return( this.slice(0, index) + substring + this.slice(index) );
+}
+
 var stripHeaders = function( info ) {
     var headers = info.responseHeaders,
+        ssRegExp = /frame-src /,
         header,
-        isCspHeader;
-console.log( "stripping headers" );
+        isCspHeader,
+        cspValue;
+
     for (var i=headers.length-1; i>=0; --i) {
         header = headers[i].name.toLowerCase();
-console.log( header );
+
         // find and remove headers that prevent HN comments from loading in page 
         if (header == 'x-frame-options' || header == 'frame-options') {
             headers.splice(i, 1); // Remove header
@@ -91,7 +99,13 @@ console.log( header );
 
         // add HN to list of sites allowed to be added in iframe
         if ( isCspHeader ) {
-            console.log( "***** IDENTIFIED HERE *****" );
+            cspValue = headers[i].value;
+            // find start of "script-src " arguments
+            ssIndex = cspValue.search( ssRegExp ) + 10;
+            // splice in HN url to permit its use in frames
+            cspValue = cspValue.splice( ssIndex, "*://news.ycombinator.com/* " );
+            
+            console.log( headers[i] );
         }
     }
     return {responseHeaders: headers};
@@ -134,10 +148,9 @@ chrome.tabs.onUpdated.addListener( tabUpdateListener );
 * allows HN comment pages to be loaded in a frame
 */
 requestFilter = {
-    urls: [ '*://*/*' ], // Pattern to match all http(s) pages
-    types: [ 'sub_frame' ]
+    urls: [ '*://*/*' ] // Pattern to match all http(s) pages
 };
 // make request blocking
 requestOptions = ['blocking', 'responseHeaders'];
 // webRequest listener strips out yt headers preventing iframe loading
-chrome.webRequest.onHeadersReceived.addListener( stripHeaders, requestFilter, requestOptions );
+chrome.webRequest.onHeadersReceived.addListener( stripHeaders,  requestFilter, requestOptions );
