@@ -80,6 +80,19 @@ var stripHeaders = function( info ) {
     return {responseHeaders: headers};
 }
 
+var modifyHeaders = function( info ) {
+    var headers = info.responseHeaders;
+    for (var i=headers.length-1; i>=0; --i) {
+        var header = headers[i].name.toLowerCase();
+        if ( header == 'X-WebKit-CSP' || 
+             header == 'X-Content-Security-Policy' || 
+             header == 'Content-Security-Policy') {
+            console.log( header );
+        }
+    }
+    return {responseHeaders: headers};
+}
+
 var prepPostPage = function( tabId ) {
     
     // inject.js
@@ -124,3 +137,4 @@ requestFilter = {
 requestOptions = ['blocking', 'responseHeaders'];
 // webRequest listener strips out yt headers preventing iframe loading
 chrome.webRequest.onHeadersReceived.addListener( stripHeaders, requestFilter, requestOptions );
+chrome.webRequest.onHeadersReceived.addListener( modifyHeaders, requestFilter, requestOptions );
