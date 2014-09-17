@@ -50,10 +50,10 @@ var toggleComments = function( URL ) {
 }
 
 var drawIframe = function() {
-	var frameset,
-		pageURL,
+    var pageURL,
 		pageFrame,
-		commentFrame,
+        iframe,
+		iframeContainer,
 		html,
 		body;
 
@@ -68,7 +68,7 @@ var drawIframe = function() {
 	html.insertBefore( iframeContainer, body );
 }
 
-
+console.log("running inject.js");
 /**
 * Events
 */
