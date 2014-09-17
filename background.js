@@ -102,12 +102,14 @@ var stripHeaders = function( info ) {
             cspValue = headers[i].value;
             // find start of "script-src " arguments
             ssIndex = cspValue.search( ssRegExp ) + 10;
+            if ( ssIndex >= 0 ) console.log( i );
             // splice in HN url to permit its use in frames
-            cspValue = cspValue.splice( ssIndex, "*://news.ycombinator.com/* " );
+            headers[i].value = cspValue.splice( ssIndex, "news.ycombinator.com " );
             
-            console.log( headers[i] );
         }
     }
+
+    console.log( headers );
     return {responseHeaders: headers};
 }
 
