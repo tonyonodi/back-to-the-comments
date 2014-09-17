@@ -51,6 +51,9 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
     // Check that this is the first tab to appear since HN post was clicked.
     if ( clickFlag && isLoading ) {
 
+        // turn clickFlag off 
+        clickFlag = false;
+    
         // add comment url to tab object.
 		tabName = "tab_" + tabId;
         tabList[ tabName ] = mostRecentComment;
@@ -60,6 +63,9 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 
 	} else if ( isLoading && hasLoaded ) {
         
+        // turn clickFlag off 
+        clickFlag = false;
+
         prepPostPage( tabId );
 
     }
@@ -100,21 +106,20 @@ var stripHeaders = function( info ) {
         // add HN to list of sites allowed to be added in iframe
         if ( isCspHeader ) {
             cspValue = headers[i].value;
+           
             // find start of "script-src " arguments
             ssIndex = cspValue.search( ssRegExp ) + 10;
-            if ( ssIndex >= 0 ) console.log( i );
+            
             // splice in HN url to permit its use in frames
             headers[i].value = cspValue.splice( ssIndex, "news.ycombinator.com " );
             
         }
     }
 
-    console.log( headers );
     return {responseHeaders: headers};
 }
 
 var prepPostPage = function( tabId ) {
-    
     // inject.js
     chrome.tabs.executeScript(tabId, { 
       code: "document.head.appendChild(document.createElement('script')).src='" + 
@@ -129,8 +134,6 @@ var prepPostPage = function( tabId ) {
     // show page action
     chrome.pageAction.show( tabId );
 
-    // turn clickFlag off 
-    clickFlag = false;
 }
 
 
