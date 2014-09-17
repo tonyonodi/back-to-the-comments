@@ -70,24 +70,28 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 * Functions
 */
 var stripHeaders = function( info ) {
-    var headers = info.responseHeaders;
+    var headers = info.responseHeaders,
+        header,
+        isCspHeader;
+console.log( "stripping headers" );
     for (var i=headers.length-1; i>=0; --i) {
-        var header = headers[i].name.toLowerCase();
+        header = headers[i].name.toLowerCase();
+console.log( header );
+        // find and remove headers that prevent HN comments from loading in page 
         if (header == 'x-frame-options' || header == 'frame-options') {
             headers.splice(i, 1); // Remove header
         }
-    }
-    return {responseHeaders: headers};
-}
+        
+        isCspHeader = header == 'X-WebKit-CSP' || 
+            header == 'X-Content-Security-Policy' || 
+            header == 'Content-Security-Policy' ||
+            header == 'x-webKit-CSP' || 
+            header == 'x-content-security-policy' || 
+            header == 'content-security-policy';
 
-var modifyHeaders = function( info ) {
-    var headers = info.responseHeaders;
-    for (var i=headers.length-1; i>=0; --i) {
-        var header = headers[i].name.toLowerCase();
-        if ( header == 'X-WebKit-CSP' || 
-             header == 'X-Content-Security-Policy' || 
-             header == 'Content-Security-Policy') {
-            console.log( header );
+        // add HN to list of sites allowed to be added in iframe
+        if ( isCspHeader ) {
+            console.log( "***** IDENTIFIED HERE *****" );
         }
     }
     return {responseHeaders: headers};
@@ -137,4 +141,3 @@ requestFilter = {
 requestOptions = ['blocking', 'responseHeaders'];
 // webRequest listener strips out yt headers preventing iframe loading
 chrome.webRequest.onHeadersReceived.addListener( stripHeaders, requestFilter, requestOptions );
-chrome.webRequest.onHeadersReceived.addListener( modifyHeaders, requestFilter, requestOptions );
