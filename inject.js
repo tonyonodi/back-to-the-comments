@@ -1,3 +1,10 @@
+// wrap all code in an if statement using global var to check if script has been run before.
+
+var BTTC_ACTIVE_GLOBAL; 
+if ( ! BTTC_ACTIVE_GLOBAL ) {
+// first set active to true
+BTTC_ACTIVE_GLOBAL = true;
+
 /**
 * Variables
 */
@@ -75,3 +82,4 @@ console.log("running inject.js");
 iframeOpen = 0;
 drawIframe();
 window.addEventListener("message", receiveMessage, false);
+}

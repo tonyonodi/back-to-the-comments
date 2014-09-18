@@ -53,7 +53,6 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
 
         // turn clickFlag off 
         clickFlag = false;
-    
         // add comment url to tab object.
 		tabName = "tab_" + tabId;
         tabList[ tabName ] = mostRecentComment;
@@ -65,7 +64,6 @@ var tabUpdateListener = function(tabId, changeInfo, tab) {
         
         // turn clickFlag off 
         clickFlag = false;
-
         prepPostPage( tabId );
 
     }
@@ -120,6 +118,7 @@ var stripHeaders = function( info ) {
 }
 
 var prepPostPage = function( tabId ) {
+    
     // inject.js
     chrome.tabs.executeScript(tabId, { 
       code: "document.head.appendChild(document.createElement('script')).src='" + 
