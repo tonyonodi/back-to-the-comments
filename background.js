@@ -17,11 +17,17 @@ var pageActionListener = function(tab) {
 	var commentURL,
 		tabId,
 		tabName;
+   
+    tabId 	   = tab.id;
+    tabName    = "tab_" + tabId;
+    commentURL = tabList[ tabName ];
 
-	// retrieve comment from tabList
-	tabId 	   = tab.id;
-	tabName    = "tab_" + tabId;
-	commentURL = tabList[ tabName ];
+    // if tab has been opened before comment bus be retrieved from 
+    // its URL rather than its tab ID.
+    if ( ! commentURL ) {
+        tabUrl = tab.url;
+        commentURL = urlList[ tabUrl ];
+    }
 
 	// save comment URL to window object
 	chrome.tabs.executeScript(tabId, {
