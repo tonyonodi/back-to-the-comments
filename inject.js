@@ -18,13 +18,13 @@ var iframeOpen,
 var initDrag = function(e) { 
 	document.documentElement.addEventListener("mousemove", doDrag, false);
 	document.documentElement.addEventListener("mouseup", stopDrag, false);
-	document.querySelector("#iframe-cover").style.display = "block";
+	document.querySelector("#bttc-iframe-cover").style.display = "block";
 }
 
 var stopDrag = function(e) {
 	document.documentElement.removeEventListener("mousemove", doDrag, false);
 	document.documentElement.removeEventListener("mouseup", stopDrag, false);
-	document.querySelector("#iframe-cover").style.display = "none";
+	document.querySelector("#bttc-iframe-cover").style.display = "none";
 }
 
 var doDrag = function(e) {
@@ -99,7 +99,7 @@ var drawIframe = function() {
     // set ids of new attributes
     iframeContainer.setAttribute("id", "bttc-comment-div");
     dragBar.setAttribute("id", "bttc-dragbar");
-    iframeCover.setAttribute("id", "iframe-cover");
+    iframeCover.setAttribute("id", "bttc-iframe-cover");
     iframe.setAttribute("id", "bttc-comment-frame");
 
     // insert elements into DOM

@@ -9,7 +9,7 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px 0px;
 }
 
-#bttc-comment-div #iframe-cover {
+#bttc-comment-div #bttc-iframe-cover {
   position: absolute;
   left: 0;
   right: 0;
