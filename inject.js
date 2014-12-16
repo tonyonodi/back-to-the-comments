@@ -76,7 +76,6 @@ var drawIframe = function() {
 	html.insertBefore( iframeContainer, body );
 }
 
-console.log("running inject.js");
 /**
 * Events
 */
