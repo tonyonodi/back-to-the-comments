@@ -18,11 +18,13 @@ var iframeOpen,
 var initDrag = function(e) { 
 	document.documentElement.addEventListener("mousemove", doDrag, false);
 	document.documentElement.addEventListener("mouseup", stopDrag, false);
+	document.querySelector("#iframe-cover").style.display = "block";
 }
 
 var stopDrag = function(e) {
 	document.documentElement.removeEventListener("mousemove", doDrag, false);
 	document.documentElement.removeEventListener("mouseup", stopDrag, false);
+	document.querySelector("#iframe-cover").style.display = "none";
 }
 
 var doDrag = function(e) {
@@ -87,14 +89,22 @@ var drawIframe = function() {
 
 	html = document.querySelector( "html" );
 	body = document.querySelector( "body" );
+    
+	// create iframe container, drag bar and iframe
     iframeContainer = document.createElement( "div" );
     dragBar = document.createElement("div");
+    iframeCover = document.createElement("div");
 	iframe = document.createElement( "iframe" );
+    
+    // set ids of new attributes
     iframeContainer.setAttribute("id", "bttc-comment-div");
     dragBar.setAttribute("id", "bttc-dragbar");
+    iframeCover.setAttribute("id", "iframe-cover");
     iframe.setAttribute("id", "bttc-comment-frame");
 
+    // insert elements into DOM
     iframeContainer.appendChild( dragBar );
+    iframeContainer.appendChild( iframeCover );
     iframeContainer.appendChild( iframe );
 	html.insertBefore( iframeContainer, body );
 

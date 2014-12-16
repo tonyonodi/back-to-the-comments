@@ -9,6 +9,15 @@
     box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 20px 0px;
 }
 
+#bttc-comment-div #iframe-cover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: none;
+}
+
 #bttc-comment-div #bttc-dragbar {
   width: 5px;
   height: 100%;
