@@ -8,11 +8,30 @@ BTTC_ACTIVE_GLOBAL = true;
 /**
 * Variables
 */
-var iframeOpen;
+var iframeOpen,
+	mouseDown = false;
 
 /**
 * Functions and callbacks
 */
+
+var initDrag = function(e) { 
+	startX = e.clientX;  
+	document.documentElement.addEventListener('mousemove', doDrag, false);
+	document.documentElement.addEventListener('mouseup', stopDrag, false);
+}
+
+var stopDrag = function(e) {
+	console.log('Drag over, phew!');
+	document.documentElement.removeEventListener('mousemove', doDrag, false);
+	document.documentElement.removeEventListener('mouseup', stopDrag, false);
+}
+
+var doDrag = function(e) {
+	console.log(startX);
+	console.log(e.clientX);
+}
+
 var receiveMessage = function(event) {
 	var commentPath,
 		frameURL;
@@ -78,6 +97,10 @@ var drawIframe = function() {
     iframeContainer.appendChild( dragBar );
     iframeContainer.appendChild( iframe );
 	html.insertBefore( iframeContainer, body );
+
+	// add listeners for comment resize
+	// dragBar.onMouseDown(mouseDownCallback);
+	// dragBar.onMouseUp(mouseUpCallback);
 }
 
 /**
@@ -86,4 +109,5 @@ var drawIframe = function() {
 iframeOpen = 0;
 drawIframe();
 window.addEventListener("message", receiveMessage, false);
+dragBar.addEventListener('mousedown', initDrag, false);
 }
