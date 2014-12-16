@@ -19,9 +19,11 @@
 }
 
 #bttc-comment-div #bttc-dragbar {
-  width: 5px;
+  width: 3px;
   height: 100%;
-  background: blue;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+  background: white;
   position: absolute;
   cursor: ew-resize;
 }
