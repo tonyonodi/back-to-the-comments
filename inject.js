@@ -62,16 +62,20 @@ var drawIframe = function() {
 		pageFrame,
         iframe,
 		iframeContainer,
+		dragBar,
 		html,
 		body;
 
 	html = document.querySelector( "html" );
 	body = document.querySelector( "body" );
     iframeContainer = document.createElement( "div" );
+    dragBar = document.createElement("div");
 	iframe = document.createElement( "iframe" );
     iframeContainer.setAttribute("id", "bttc-comment-div");
+    dragBar.setAttribute("id", "bttc-dragbar");
     iframe.setAttribute("id", "bttc-comment-frame");
 
+    iframeContainer.appendChild( dragBar );
     iframeContainer.appendChild( iframe );
 	html.insertBefore( iframeContainer, body );
 }
