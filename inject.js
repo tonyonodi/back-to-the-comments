@@ -99,8 +99,7 @@ var drawIframe = function() {
 	html.insertBefore( iframeContainer, body );
 
 	// add listeners for comment resize
-	// dragBar.onMouseDown(mouseDownCallback);
-	// dragBar.onMouseUp(mouseUpCallback);
+	dragBar.addEventListener('mousedown', initDrag, false);
 }
 
 /**
@@ -109,5 +108,4 @@ var drawIframe = function() {
 iframeOpen = 0;
 drawIframe();
 window.addEventListener("message", receiveMessage, false);
-dragBar.addEventListener('mousedown', initDrag, false);
 }
