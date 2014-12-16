@@ -42,7 +42,6 @@ var receiveMessage = function(event) {
 	if ( commentPath ) { 
 		frameURL = "https://news.ycombinator.com/" + commentPath;
 		toggleComments( frameURL );
-console.log(frameURL);
 	}
 }
 
