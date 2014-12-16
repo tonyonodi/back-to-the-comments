@@ -16,20 +16,24 @@ var iframeOpen,
 */
 
 var initDrag = function(e) { 
-	startX = e.clientX;  
-	document.documentElement.addEventListener('mousemove', doDrag, false);
-	document.documentElement.addEventListener('mouseup', stopDrag, false);
+	startX = e.clientX;
+
+	document.documentElement.addEventListener("mousemove", doDrag, false);
+	document.documentElement.addEventListener("mouseup", stopDrag, false);
 }
 
 var stopDrag = function(e) {
-	console.log('Drag over, phew!');
-	document.documentElement.removeEventListener('mousemove', doDrag, false);
-	document.documentElement.removeEventListener('mouseup', stopDrag, false);
+	document.documentElement.removeEventListener("mousemove", doDrag, false);
+	document.documentElement.removeEventListener("mouseup", stopDrag, false);
 }
 
 var doDrag = function(e) {
-	console.log(startX);
-	console.log(e.clientX);
+	var deltaMousePos = e.clientX - startX,
+		commentFrame = document.querySelector("#bttc-comment-div"),
+		commentFrameWidth = commentFrame.clientWidth;
+
+	// if delta pos is -ve then comment frame gets wider.
+	commentFrame.style.width = commentFrameWidth - deltaMousePos + "px";
 }
 
 var receiveMessage = function(event) {
@@ -49,6 +53,7 @@ var toggleComments = function( URL ) {
 	var commentFrame,
 		frameset,
 		frameHasSrc;
+
 	commentDiv = document.querySelector( "#bttc-comment-div" );
 	commentFrame = document.querySelector( "#bttc-comment-frame" );
     body = document.querySelector( "body" );
