@@ -16,8 +16,6 @@ var iframeOpen,
 */
 
 var initDrag = function(e) { 
-	startX = e.clientX;
-
 	document.documentElement.addEventListener("mousemove", doDrag, false);
 	document.documentElement.addEventListener("mouseup", stopDrag, false);
 }
@@ -28,12 +26,10 @@ var stopDrag = function(e) {
 }
 
 var doDrag = function(e) {
-	var deltaMousePos = e.clientX - startX,
-		commentFrame = document.querySelector("#bttc-comment-div"),
-		commentFrameWidth = commentFrame.clientWidth;
+	var commentFrame = document.querySelector("#bttc-comment-div");
 
 	// if delta pos is -ve then comment frame gets wider.
-	commentFrame.style.width = commentFrameWidth - deltaMousePos + "px";
+	commentFrame.style.width = window.innerWidth - e.clientX + "px";
 }
 
 var receiveMessage = function(event) {
