@@ -1,9 +1,11 @@
 Back to the Comments (Hacker News)
 ====================
 
-This is a chrome extension. It's meant to help with your "workflow" when procrastinating on Hacker News. Basically it allows you to navigate back to a post's comments without having to go through the homepage (uses a page action). 
+This is a chrome extension to help with your "workflow" while procrastinating on Hacker News. Once you've navigated to a post from HN a little orange page action appears in your url bar. Click it and the comments for the post should be popped into the page! Which looks like this... 
 
-If you happen upon this **please do not post it anywhere**. The main functionality of it is there, I use it on a daily basis and you might want to too, but it still needs a bit more polish before it's worth publishing on the chrome app store etc.
+![alt tag](https://raw.githubusercontent.com/tonyonodi/back-to-the-comments/master/screenshot.png)
+
+I use this on a daily basis and you might want to too, however I make no guarantees about it working. It's only as polished as I've had time to make it.
 
 Pull requests welcome.
 
