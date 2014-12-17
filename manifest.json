@@ -2,11 +2,11 @@
   "manifest_version": 2,
 
   "name": "Back to the Comments",
-  "description": "When browsing hacker news this extension allows users to quickly navigate back to the comments of an item once it has been clicked through to.",
+  "description": "Adds a page action to hacker news posts that pops comments in when clicked.",
   "version": "0.3.2",
 
   "permissions": [
-  	"tabs",
+    "tabs",
     "<all_urls>",
     "storage",
     "webRequest",
