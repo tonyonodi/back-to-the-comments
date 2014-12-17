@@ -17,15 +17,17 @@ function nodelistToArray( nodelist ) {
 var makePostObject = function( currentPost ) {
 	var postLinkNode,
 		commentURL,
+		commentID,
 		postObject;
 
 	postLinkNode = currentPost.children[0].children[0];
 	commentURL = currentPost.children[4].children[0].getAttribute("href");
+	commentID = "item?id=" + /\d{1,}$/.exec( commentURL );
 
 	// construct post object
 	postObject = {
 		"link": postLinkNode,
-		"commentURL": commentURL
+		"commentURL": commentID
 	}
 
 	return postObject;
@@ -42,9 +44,6 @@ var addPostListener = function( currentPost ) {
 
 	link = currentPost.link;
 	comment = currentPost.commentURL;
-
-	console.log("link: " + link);
-	console.log("comment: " + comment);
 
 	link.addEventListener( "click", messenger.bind( null, comment ), false);
 }
