@@ -31,6 +31,24 @@ var makePostObject = function( currentPost ) {
 	return postObject;
 }
 
+// send comment url
+var messenger = function( message ) {
+	chrome.runtime.sendMessage( message );
+}
+
+var addPostListener = function( currentPost ) {
+	var link,
+		comment;
+
+	link = currentPost.link;
+	comment = currentPost.commentURL;
+
+	console.log("link: " + link);
+	console.log("comment: " + comment);
+
+	link.addEventListener( "click", messenger.bind( null, comment ), false);
+}
+
 var main = function() {
 	var postList,
 		postArray,
@@ -40,7 +58,11 @@ var main = function() {
 	postList = document.querySelectorAll( "div.hit div.title_url" );
 	postArray = nodelistToArray( postList );
 
+	// map to array of objects with useful inforation
 	postObjectArray = postArray.map( makePostObject );
+
+	// add listeners to each post
+	postObjectArray.forEach( addPostListener );
 }
 
 window.onload = main;
