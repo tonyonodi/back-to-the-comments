@@ -1,0 +1,1 @@
+console.log("Algolia is alive!");
