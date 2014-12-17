@@ -64,11 +64,9 @@ var toggleComments = function( URL ) {
 	
 	// open/close iframe
 	if ( ! iframeOpen ) {
-        commentDiv.style.width = "50%";
         commentDiv.style.display = "block";
         body.style.opacity = 0.4;
 	} else {
-        commentDiv.style.width = "0";
         commentDiv.style.display = "none";
         body.style.opacity = 1;
 	}

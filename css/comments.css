@@ -1,5 +1,5 @@
 #bttc-comment-div {
-    width: 0;
+    width: 50%;
     display: none;
     z-index 100;
     position: fixed;
